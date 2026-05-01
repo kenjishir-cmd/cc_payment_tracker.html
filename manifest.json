@@ -1,0 +1,16 @@
+{
+  "name": "信用卡繳款管理 v2.0",
+  "short_name": "繳款管家",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0a0c10",
+  "theme_color": "#0a0c10",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
