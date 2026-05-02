@@ -1,8 +1,9 @@
 <!DOCTYPE html><html lang="zh-TW"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>信用卡繳款管理</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/><style>*{box-sizing:border-box;margin:0;padding:0}body{background:#0a0c10;color:#e2e8f0;font-family:'Noto Sans TC',sans-serif;min-height:100vh}.card{background:#111318;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}.stat-card{background:#0e1117;border:1px solid #1e2330;border-radius:10px;padding:14px}.wave-btn{border:1px solid #1e2330;background:#111318;color:#64748b;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px;font-family:inherit}.wave-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}.row{border-bottom:1px solid #1a1f2e;padding:11px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row:last-child{border-bottom:none}.avatar{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}.chip{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.manual{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25)}.auto{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2)}.w1{background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2);border-radius:6px}.w2{background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);border-radius:6px}.w3{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);border-radius:6px}.pulse{animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}.notif-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:500}.notif-on{background:rgba(52,211,153,.12);color:#34d399;border:1px solid rgba(52,211,153,.25)}.notif-off{background:rgba(100,116,139,.08);color:#64748b;border:1px solid #1e2330}.banner{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:#052e16;border:1px solid rgba(52,211,153,.3);color:#34d399;padding:9px 16px;border-radius:10px;font-size:12px;z-index:999;white-space:nowrap}.cbtn{border:1px solid #334155;background:none;color:#64748b;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:11px;font-family:inherit;margin-top:4px}.cbtn.done{background:rgba(52,211,153,.1);color:#34d399;border-color:rgba(52,211,153,.3)}.cbtn.cancel{background:rgba(239,68,68,.08);color:#f87171;border-color:rgba(239,68,68,.2);margin-top:4px}.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}.modal{background:#111318;border:1px solid #1e2330;border-radius:16px;padding:24px;width:100%;max-width:320px;text-align:center}.version-badge{display:inline-flex;align-items:center;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);color:#818cf8;border-radius:20px;padding:2px 10px;font-size:10px;font-weight:600;letter-spacing:.5px;cursor:pointer}.notif-panel{background:#0e1117;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px;overflow:hidden}.notif-panel-header{padding:12px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;justify-content:space-between}.notif-item{padding:10px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;gap:10px}.notif-item:last-child{border-bottom:none}.notif-item.urgent{background:rgba(239,68,68,.04)}.notif-item.today{background:rgba(251,191,36,.04)}.notif-item.soon{background:rgba(96,165,250,.03)}.notif-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.notif-dot.red{background:#ef4444}.notif-dot.yellow{background:#fbbf24}.notif-dot.blue{background:#3b82f6}.dismiss-btn{background:none;border:1px solid #1e2330;color:#475569;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;font-family:inherit;flex-shrink:0}
 /* TAB NAV */
-.tab-nav{display:flex;gap:4px;padding:10px 16px;border-bottom:1px solid #1e2330;background:#0a0c10;position:sticky;top:0;z-index:100}
-.tab-btn{padding:7px 16px;border-radius:8px;border:1px solid #1e2330;background:none;color:#64748b;font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s}
+.tab-nav{display:flex;gap:4px;padding:10px 16px;border-top:1px solid #1e2330;background:#0a0c10;position:fixed;bottom:0;left:0;right:0;z-index:100;justify-content:center}
+.tab-btn{padding:9px 32px;border-radius:10px;border:1px solid #1e2330;background:none;color:#64748b;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}
 .tab-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}
+.page-content{padding-bottom:70px}
 /* SHEET PAGE */
 .sheet-table{width:100%;border-collapse:collapse;font-size:12px}
 .sheet-table th{background:#0e1117;color:#475569;font-size:10px;font-weight:600;padding:8px 12px;text-align:left;border-bottom:1px solid #1e2330;letter-spacing:.5px}
@@ -55,7 +56,6 @@ const WAVES=[
   {id:3,label:"第三波",checkDay:4,banks:[9,10,11],color:"#34d399",next:true}
 ];
 
-// ── helpers ──────────────────────────────────────────────────────────────────
 function getDue(d){
   if(!d)return null;
   const t=new Date();
@@ -78,69 +78,50 @@ function fmtTime(ts){
   return(d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
 }
 function fmtMonthLabel(key){
-  // key = "2026-5"
   const [y,m]=key.split("-");
   return y+"年"+m+"月";
 }
 function curWave(){const d=new Date().getDate();return d<=18?1:d<=25?2:3;}
 function monthKey(){const t=new Date();return t.getFullYear()+"-"+(t.getMonth()+1);}
 
-// ── state ────────────────────────────────────────────────────────────────────
 let fw="all";
 let remOn=localStorage.getItem("rem")==="1";
 let banner="",bTimer=null;
 let confirmed=JSON.parse(localStorage.getItem("confirmed")||"{}");
 let dismissedNotifs=JSON.parse(localStorage.getItem("dismissedNotifs")||"{}");
-// history: { "2026-4": { bankId: {ts, wave, bankName, type} }, ... }
 let history=JSON.parse(localStorage.getItem("payHistory")||"{}");
-let currentTab="dashboard"; // "dashboard" | "sheet"
+let currentTab="dashboard";
 let sheetExpandedMonths={};
 
 const today=new Date();
 const cw=curWave();
 
-// ── banner ───────────────────────────────────────────────────────────────────
 function showBanner(msg){
   banner=msg;render();
   if(bTimer)clearTimeout(bTimer);
   bTimer=setTimeout(()=>{banner="";render();},3000);
 }
-
-// ── confirmed helpers ────────────────────────────────────────────────────────
 function getConfirmed(id){
   const k=monthKey();
   return confirmed[k]&&confirmed[k][id]?confirmed[k][id]:null;
 }
 function isDone(id){return !!getConfirmed(id);}
 
-// ── wave-3 auto-reset logic ───────────────────────────────────────────────────
 function getWave3BankIds(){return WAVES.find(w=>w.id===3).banks;}
-
 function checkWave3Complete(){
-  // Check if ALL wave-3 banks (that exist in BANKS) are confirmed this month
   const w3ids=getWave3BankIds().filter(id=>BANKS.find(b=>b.id===id));
   return w3ids.every(id=>isDone(id));
 }
-
 function archiveAndReset(){
-  // 1. Archive current month's confirmed data to history
   const k=monthKey();
   const cur=confirmed[k]||{};
   if(!history[k])history[k]={};
   Object.keys(cur).forEach(id=>{
     const bank=BANKS.find(b=>b.id===Number(id));
     if(!bank)return;
-    history[k][id]={
-      ts:cur[id].ts,
-      bankName:bank.name,
-      wave:bank.wave,
-      type:bank.type,
-      day:bank.day
-    };
+    history[k][id]={ts:cur[id].ts,bankName:bank.name,wave:bank.wave,type:bank.type,day:bank.day};
   });
   localStorage.setItem("payHistory",JSON.stringify(history));
-
-  // 2. Clear wave-1 and wave-2 confirmed for this month (keep wave-3 as is)
   const w3ids=new Set(getWave3BankIds());
   const newMonthData={};
   Object.keys(cur).forEach(id=>{
@@ -148,25 +129,16 @@ function archiveAndReset(){
   });
   confirmed[k]=newMonthData;
   localStorage.setItem("confirmed",JSON.stringify(confirmed));
-
-  // 3. Show banner
   showBanner("🎉 第三波完成！第一、二波已清除，等待下月繳款！");
 }
 
-// Check and trigger when wave-3 just became complete
 let wave3WasComplete=checkWave3Complete();
 function checkAndTriggerWave3(){
   const nowComplete=checkWave3Complete();
-  // only trigger if wave-3 was NOT complete before and IS complete now
-  if(!wave3WasComplete&&nowComplete){
-    wave3WasComplete=true;
-    archiveAndReset();
-  }else{
-    wave3WasComplete=nowComplete;
-  }
+  if(!wave3WasComplete&&nowComplete){wave3WasComplete=true;archiveAndReset();}
+  else{wave3WasComplete=nowComplete;}
 }
 
-// ── version history ──────────────────────────────────────────────────────────
 function showVersionHistory(){
   const mr=document.getElementById("modal-root");
   mr.innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()" style="max-height:80vh;overflow-y:auto;text-align:left">
@@ -185,7 +157,6 @@ function showVersionHistory(){
   </div></div>`;
 }
 
-// ── confirm / cancel pay ─────────────────────────────────────────────────────
 function confirmPay(id){
   const bank=BANKS.find(b=>b.id===id);
   const mr=document.getElementById("modal-root");
@@ -220,7 +191,7 @@ function doConfirm(id){
   confirmed[k][id]={ts:Date.now()};
   localStorage.setItem("confirmed",JSON.stringify(confirmed));
   closeModal();
-  checkAndTriggerWave3(); // ← check if wave-3 just completed
+  checkAndTriggerWave3();
   if(!banner)showBanner("✓ 已標記確認！");
   render();
 }
@@ -228,7 +199,7 @@ function doCancel(id){
   const k=monthKey();
   if(confirmed[k])delete confirmed[k][id];
   localStorage.setItem("confirmed",JSON.stringify(confirmed));
-  wave3WasComplete=false; // reset flag so it can trigger again
+  wave3WasComplete=false;
   closeModal();
   showBanner("已取消確認");
   render();
@@ -243,7 +214,6 @@ function resetAll(){
   render();
 }
 
-// ── alerts ───────────────────────────────────────────────────────────────────
 function isDismissed(id){
   const k=monthKey();
   return !!(dismissedNotifs[k]&&dismissedNotifs[k][id]);
@@ -288,7 +258,6 @@ function getPageAlerts(){
   return alerts.filter(a=>!isDismissed(a.id));
 }
 
-// ── notifications ────────────────────────────────────────────────────────────
 function doNotify(){
   if(localStorage.getItem("rem")!=="1"||Notification.permission!=="granted")return;
   WAVES.forEach(w=>{
@@ -312,102 +281,76 @@ async function toggleNotif(){
   }
 }
 
-// ── tab navigation ────────────────────────────────────────────────────────────
 function setTab(t){currentTab=t;render();}
 function setFw(v){fw=v;render();}
 
-// ── sheet page ────────────────────────────────────────────────────────────────
 function toggleSheetMonth(key){
   sheetExpandedMonths[key]=!sheetExpandedMonths[key];
   render();
 }
 
 function renderSheetPage(){
-  // Merge current month's confirmed into a view (even if not archived yet)
   const k=monthKey();
   const curData=confirmed[k]||{};
-  
-  // Build combined: history + current month live
   const allMonths={};
-  
-  // From history
   Object.keys(history).forEach(mk=>{
     if(!allMonths[mk])allMonths[mk]={};
     Object.assign(allMonths[mk],history[mk]);
   });
-  
-  // From current confirmed (live, not yet archived)
   Object.keys(curData).forEach(id=>{
     if(!allMonths[k])allMonths[k]={};
     if(!allMonths[k][id]){
       const bank=BANKS.find(b=>b.id===Number(id));
       if(!bank)return;
-      allMonths[k][id]={
-        ts:curData[id].ts,
-        bankName:bank.name,
-        wave:bank.wave,
-        type:bank.type,
-        day:bank.day
-      };
+      allMonths[k][id]={ts:curData[id].ts,bankName:bank.name,wave:bank.wave,type:bank.type,day:bank.day};
     }
   });
-
   const sortedMonths=Object.keys(allMonths).sort((a,b)=>{
     const [ay,am]=a.split("-").map(Number);
     const [by,bm]=b.split("-").map(Number);
     return by!==ay?by-ay:bm-am;
   });
-
   if(sortedMonths.length===0){
-    return `<div style="text-align:center;padding:40px 20px;color:#334155;font-size:13px">
+    return`<div style="text-align:center;padding:40px 20px;color:#334155;font-size:13px">
       <div style="font-size:32px;margin-bottom:12px">📭</div>
       <div style="color:#475569">尚無繳款記錄</div>
       <div style="font-size:11px;color:#334155;margin-top:6px">確認繳款後記錄會出現在這裡</div>
     </div>`;
   }
-
   const waveColor={1:"#60a5fa",2:"#a78bfa",3:"#34d399",null:"#64748b"};
   const waveLabel={1:"第一波",2:"第二波",3:"第三波",null:"—"};
-
   return sortedMonths.map(mk=>{
     const entries=Object.values(allMonths[mk]);
     const total=BANKS.length;
     const count=entries.length;
     const isCur=mk===k;
-    const isExpanded=sheetExpandedMonths[mk]!==false; // default expanded
-
+    const isExpanded=sheetExpandedMonths[mk]!==false;
     const badge=count===0
       ?`<span class="badge-none">無記錄</span>`
       :count>=total
         ?`<span class="badge-ok">✓ 全部完成</span>`
         :`<span class="badge-partial">${count}/${total} 已確認</span>`;
-
-    // Sort entries by wave then by ts
     const sorted=[...entries].sort((a,b)=>{
       const wa=a.wave||99,wb=b.wave||99;
       return wa!==wb?wa-wb:a.ts-b.ts;
     });
-
     const rows=sorted.map(e=>{
       const wc=waveColor[e.wave]||"#64748b";
       const wl=waveLabel[e.wave]||"—";
-      return `<tr>
+      return`<tr>
         <td><span style="font-size:13px;color:#cbd5e1;font-weight:500">${e.bankName}</span></td>
         <td><span style="color:${wc};font-size:11px">${wl}</span></td>
         <td><span class="chip ${e.type==="manual"?"manual":"auto"}" style="font-size:10px">${e.type==="manual"?"⚠ 手動":"✓ 自動"}</span></td>
         <td style="color:#34d399;font-size:11px">✓ ${fmtTime(e.ts)||"—"}</td>
       </tr>`;
     }).join("");
-
-    // Wave summary
     const waveSummary=[1,2,3].map(wid=>{
       const wEntries=entries.filter(e=>e.wave===wid);
       const wBanks=WAVES.find(w=>w.id===wid).banks.filter(id=>BANKS.find(b=>b.id===id));
       const wc=waveColor[wid];
-      return `<span style="font-size:10px;color:#475569;margin-right:10px"><span style="color:${wc}">${waveLabel[wid]}</span> ${wEntries.length}/${wBanks.length}</span>`;
+      return`<span style="font-size:10px;color:#475569;margin-right:10px"><span style="color:${wc}">${waveLabel[wid]}</span> ${wEntries.length}/${wBanks.length}</span>`;
     }).join("");
-
-    return `<div class="month-header">
+    return`<div class="month-header">
       <div class="month-header-title" onclick="toggleSheetMonth('${mk}')">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
           <span style="font-size:14px;font-weight:700;color:#f1f5f9">${fmtMonthLabel(mk)}</span>
@@ -415,7 +358,6 @@ function renderSheetPage(){
           ${badge}
         </div>
         <div style="display:flex;align-items:center;gap:10px">
-          <div style="display:none;display:flex">${waveSummary}</div>
           <span style="color:#475569;font-size:14px">${isExpanded?"▾":"▸"}</span>
         </div>
       </div>
@@ -432,10 +374,8 @@ function renderSheetPage(){
   }).join("");
 }
 
-// ── main render ───────────────────────────────────────────────────────────────
 function render(){
   const ds=today.getFullYear()+"/"+(today.getMonth()+1).toString().padStart(2,"0")+"/"+today.getDate().toString().padStart(2,"0");
-
   const headerHtml=`
     <div style="border-bottom:1px solid #1e2330;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10">
       <div style="display:flex;align-items:center;gap:10">
@@ -455,9 +395,9 @@ function render(){
           <div style="font-size:12px;color:#94a3b8">${ds}</div>
         </div>
       </div>
-    </div>
-    <div class="tab-nav">
-      <button class="tab-btn ${currentTab==="dashboard"?"active":""}" onclick="setTab('dashboard')">📊 Dashboard</button>
+    </div>`;
+  const tabNavHtml=`<div class="tab-nav">
+      <button class="tab-btn ${currentTab==="dashboard"?"active":""}" onclick="setTab('dashboard')">📊 總覽</button>
       <button class="tab-btn ${currentTab==="sheet"?"active":""}" onclick="setTab('sheet')">📋 繳款記錄</button>
     </div>`;
 
@@ -465,17 +405,16 @@ function render(){
     document.getElementById("app").innerHTML=
       (banner?`<div class="banner">${banner}</div>`:"")+
       headerHtml+
-      `<div style="max-width:960px;margin:0 auto;padding:16px 12px">
+      `<div class="page-content" style="max-width:960px;margin:0 auto;padding:16px 12px">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8">
           <span style="font-size:11px;color:#475569">PAYMENT HISTORY · 各月繳款記錄</span>
           <span style="font-size:10px;color:#334155">點擊月份可展開/收合</span>
         </div>
         ${renderSheetPage()}
-      </div>`;
+      </div>`+tabNavHtml;
     return;
   }
 
-  // ── dashboard ──
   const nextW=WAVES.map(w=>({...w,cd:getWD(w),dl:daysTo(getWD(w))})).filter(w=>w.dl>=0).sort((a,b)=>a.dl-b.dl)[0];
   const banks=fw==="all"?BANKS:BANKS.filter(b=>String(b.wave)===fw);
   const manual=BANKS.filter(b=>b.type==="manual");
@@ -483,8 +422,6 @@ function render(){
   const alerts=getPageAlerts();
   const levelColor={urgent:"#ef4444",today:"#fbbf24",soon:"#3b82f6"};
   const dotClass={urgent:"red",today:"yellow",soon:"blue"};
-
-  // Wave-3 complete banner
   const w3ids=getWave3BankIds().filter(id=>BANKS.find(b=>b.id===id));
   const w3done=w3ids.every(id=>isDone(id));
   const wave3Banner=w3done?`<div class="wave3-done-banner">
@@ -494,7 +431,6 @@ function render(){
       <div style="font-size:11px;color:#475569;margin-top:3px">本月所有波段已歸檔。第一、二波確認已清除，等待下月重新計算。</div>
     </div>
   </div>`:"";
-
   const alertsHtml=alerts.length>0
     ?`<div class="notif-panel">
         <div class="notif-panel-header">
@@ -524,7 +460,7 @@ function render(){
   document.getElementById("app").innerHTML=
     (banner?`<div class="banner">${banner}</div>`:"")+
     headerHtml+
-    `<div style="max-width:960px;margin:0 auto;padding:16px 12px">
+    `<div class="page-content" style="max-width:960px;margin:0 auto;padding:16px 12px">
       ${wave3Banner}
       ${alertsHtml}
       <div class="stat-grid">
@@ -533,7 +469,6 @@ function render(){
         <div class="stat-card"><div style="font-size:9px;color:#475569;margin-bottom:6px">已確認</div><div style="font-size:26px;font-weight:700;color:#34d399">${doneCount}</div><div style="font-size:10px;color:#64748b">本月完成</div></div>
         ${nextW?`<div class="stat-card" style="border-color:rgba(59,130,246,.3)"><div style="font-size:9px;color:#475569;margin-bottom:6px">下次檢查</div><div style="font-size:26px;font-weight:700;color:#60a5fa">${nextW.dl===0?"今天":nextW.dl+"天"}</div><div style="font-size:10px;color:#64748b">${nextW.label} · ${fmt(nextW.cd)}</div></div>`:""}
       </div>
-
       <div class="card" style="padding:16px">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8">
           <span style="font-size:11px;color:#475569">WAVE TRACKER · 檢查波段</span>
@@ -546,7 +481,6 @@ function render(){
           <div style="display:flex;justify-content:space-between;margin-bottom:10px">
             ${WAVES.map(wave=>{
               const cd=getWD(wave),days=daysTo(cd),isPast=days<0,isCur=wave.id===cw;
-              const w3ids2=getWave3BankIds().filter(id=>BANKS.find(b=>b.id===id));
               const wDone=wave.banks.filter(id=>BANKS.find(b=>b.id===id)).every(id=>isDone(id));
               return`<div style="flex:1;text-align:center">
                 <div style="width:34px;height:34px;border-radius:50%;margin:0 auto 7px;background:${isPast?"#1e2330":isCur?wave.color:"#1a2035"};border:2px solid ${isPast?"#1e2330":wave.color};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:${isPast?"#334155":isCur?"#0a0c10":wave.color};box-shadow:${isCur?"0 0 16px "+wave.color+"55":"none"}">
@@ -567,7 +501,6 @@ function render(){
           ${WAVES.map(wave=>`<div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap"><span style="font-size:11px;color:#475569">${wave.label}：</span>${wave.banks.map(bid=>{const b=BANKS.find(x=>x.id===bid);return`<span class="chip w${wave.id}">${b?b.name:""}</span>`;}).join("")}</div>`).join("")}
         </div>
       </div>
-
       <div class="card">
         <div style="padding:12px 14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10;border-bottom:1px solid #1a1f2e">
           <span style="font-size:11px;color:#475569">BANK MONITOR · ${banks.length} 家</span>
@@ -598,7 +531,6 @@ function render(){
           </div>`;
         }).join("")}
       </div>
-
       <div style="padding:12px 14px;border-radius:10px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);display:flex;align-items:flex-start;gap:10">
         <span style="font-size:14px;flex-shrink:0">⚠️</span>
         <div>
@@ -606,14 +538,12 @@ function render(){
           <div style="font-size:12px;color:#ef4444;line-height:1.7">${manual.map(b=>b.name).join("、")} 需手動繳款，請在截止日前完成。</div>
         </div>
       </div>
-
       <div style="text-align:center;margin-top:18px;padding-bottom:14px;font-size:10px;color:#475569">
         截止日 = 上月結帳日 + 18 天 &nbsp;·&nbsp; <span style="color:#818cf8;cursor:pointer" onclick="showVersionHistory()">v${VERSION.num}</span> &nbsp;·&nbsp; ${VERSION.date}
       </div>
-    </div>`;
+    </div>`+tabNavHtml;
 }
 
-// ── expose globals ────────────────────────────────────────────────────────────
 window.setFw=setFw;
 window.setTab=setTab;
 window.toggleNotif=toggleNotif;
