@@ -1,5 +1,4 @@
 <!DOCTYPE html><html lang="zh-TW"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/><title>信用卡繳款管理</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/><style>
-/* v3.3.0 強效鎖定下拉重新整理 */
 html, body {
   background:#0a0c10;
   color:#e2e8f0;
@@ -8,18 +7,16 @@ html, body {
   padding:0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* 防止全域捲動觸發瀏覽器行為 */
+  overflow: hidden;
   overscroll-behavior-y: none;
 }
-
 #app {
   width: 100%;
   height: 100%;
-  overflow-y: auto; /* 讓內容在 app 容器內捲動 */
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-
-*{box-sizing:border-box;margin:0;padding:0}.card{background:#111318;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}.stat-card{background:#0e1117;border:1px solid #1e2330;border-radius:10px;padding:14px}.wave-btn{border:1px solid #1e2330;background:#111318;color:#64748b;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px;font-family:inherit}.wave-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}.row{border-bottom:1px solid #1a1f2e;padding:11px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row:last-child{border-bottom:none}.avatar{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}.chip{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.manual{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25)}.auto{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2)}.w1{background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2);border-radius:6px}.w2{background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);border-radius:6px}.w3{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);border-radius:6px}.pulse{animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}.notif-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:500}.notif-on{background:rgba(52,211,153,.12);color:#34d399;border:1px solid rgba(52,211,153,.25)}.notif-off{background:rgba(100,116,139,.08);color:#64748b;border:1px solid #1e2330}.banner{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:#052e16;border:1px solid rgba(52,211,153,.3);color:#34d399;padding:9px 16px;border-radius:10px;font-size:12px;z-index:999;white-space:nowrap}.offline-banner{background:#450a0a !important;color:#f87171 !important;border-color:rgba(239,68,68,0.3) !important}.cbtn{border:1px solid #334155;background:none;color:#64748b;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:11px;font-family:inherit;margin-top:4px}.cbtn.done{background:rgba(52,211,153,.1);color:#34d399;border-color:rgba(52,211,153,.3)}.cbtn.cancel{background:rgba(239,68,68,.08);color:#f87171;border-color:rgba(239,68,68,.2);margin-top:4px}.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}.modal{background:#111318;border:1px solid #1e2330;border-radius:16px;padding:24px;width:100%;max-width:320px;text-align:center}.version-badge{display:inline-flex;align-items:center;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);color:#818cf8;border-radius:20px;padding:2px 10px;font-size:10px;font-weight:600;letter-spacing:.5px;cursor:pointer}.notif-panel{background:#0e1117;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px;overflow:hidden}.notif-panel-header{padding:12px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;justify-content:space-between}.notif-item{padding:10px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;gap:10px}.notif-item:last-child{border-bottom:none}.notif-item.urgent{background:rgba(239,68,68,.04)}.notif-item.today{background:rgba(251,191,36,.04)}.notif-item.soon{background:rgba(96,165,250,.03)}.notif-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.notif-dot.red{background:#ef4444}.notif-dot.yellow{background:#fbbf24}.notif-dot.blue{background:#3b82f6}.dismiss-btn{background:none;border:1px solid #1e2330;color:#475569;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;font-family:inherit;flex-shrink:0}
+*{box-sizing:border-box;margin:0;padding:0}.card{background:#111318;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}.stat-card{background:#0e1117;border:1px solid #1e2330;border-radius:10px;padding:14px}.wave-btn{border:1px solid #1e2330;background:#111318;color:#64748b;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px;font-family:inherit}.wave-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}.row{border-bottom:1px solid #1a1f2e;padding:11px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row:last-child{border-bottom:none}.avatar{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}.chip{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.manual{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25)}.auto{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2)}.w1{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);border-radius:6px}.w2{background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2);border-radius:6px}.w3{background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);border-radius:6px}.pulse{animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}.notif-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:500}.notif-on{background:rgba(52,211,153,.12);color:#34d399;border:1px solid rgba(52,211,153,.25)}.notif-off{background:rgba(100,116,139,.08);color:#64748b;border:1px solid #1e2330}.banner{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:#052e16;border:1px solid rgba(52,211,153,.3);color:#34d399;padding:9px 16px;border-radius:10px;font-size:12px;z-index:999;white-space:nowrap}.offline-banner{background:#450a0a !important;color:#f87171 !important;border-color:rgba(239,68,68,0.3) !important}.cbtn{border:1px solid #334155;background:none;color:#64748b;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:11px;font-family:inherit;margin-top:4px}.cbtn.done{background:rgba(52,211,153,.1);color:#34d399;border-color:rgba(52,211,153,.3)}.cbtn.cancel{background:rgba(239,68,68,.08);color:#f87171;border-color:rgba(239,68,68,.2);margin-top:4px}.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}.modal{background:#111318;border:1px solid #1e2330;border-radius:16px;padding:24px;width:100%;max-width:320px;text-align:center}.version-badge{display:inline-flex;align-items:center;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);color:#818cf8;border-radius:20px;padding:2px 10px;font-size:10px;font-weight:600;letter-spacing:.5px;cursor:pointer}.notif-panel{background:#0e1117;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px;overflow:hidden}.notif-panel-header{padding:12px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;justify-content:space-between}.notif-item{padding:10px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;gap:10px}.notif-item:last-child{border-bottom:none}.notif-item.urgent{background:rgba(239,68,68,.04)}.notif-item.today{background:rgba(251,191,36,.04)}.notif-item.soon{background:rgba(96,165,250,.03)}.notif-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.notif-dot.red{background:#ef4444}.notif-dot.yellow{background:#fbbf24}.notif-dot.blue{background:#3b82f6}.dismiss-btn{background:none;border:1px solid #1e2330;color:#475569;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;font-family:inherit;flex-shrink:0}
 .tab-nav{display:flex;gap:4px;padding:10px 16px;border-top:1px solid #1e2330;background:#0a0c10;position:fixed;bottom:0;left:0;right:0;z-index:100;justify-content:center}
 .tab-btn{padding:9px 32px;border-radius:10px;border:1px solid #1e2330;background:none;color:#64748b;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}
 .tab-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}
@@ -41,45 +38,37 @@ html, body {
 <div id="modal-root"></div>
 <script>
 const VERSIONS=[
+  {num:"3.4.0",date:"2026-05-03",changes:[
+    "✦ 重構波段順序：改以 4 號（原第三波）為第一波，更符合月週期順序",
+    "✦ 更新自動歸檔觸發邏輯，適配新的波段順序",
+    "✦ UI 顏色與波段邏輯重新對應"
+  ]},
   {num:"3.3.0",date:"2026-05-03",changes:[
     "✦ 強效鎖定下拉重新整理（適用更多瀏覽器版本）",
     "✦ 調整底層結構以徹底解決過度捲動穿幫問題",
-  ]},
-  {num:"3.2.0",date:"2026-05-03",changes:[
-    "✦ 停用瀏覽器下拉重新整理圖示（Pull-to-refresh）",
-    "✦ 強化 PWA 全螢幕 App 操作體驗",
-  ]},
-  {num:"3.1.0",date:"2026-05-03",changes:[
-    "✦ 新增 PWA 離線偵測提示橫幅",
-    "✦ 優化網路連線/斷線狀態自動顯示邏輯",
-  ]},
-  {num:"3.0.0",date:"2026-05-02",changes:[
-    "✦ 第三波全部完成後自動封存，第一、二波確認自動清除",
-    "✦ 新增 Sheet 頁面：查看各月各家銀行繳款歷史",
-    "✦ 歷史記錄依月份分組，顯示波段與繳款時間",
   ]}
 ];
 const VERSION=VERSIONS[0];
 
 const BANKS=[
-  {id:1,name:"遠東商銀",day:2,type:"manual",wave:1},
-  {id:2,name:"國泰世華",day:3,type:"auto",wave:1},
-  {id:3,name:"華南銀行",day:7,type:"auto",wave:1},
-  {id:4,name:"玉山銀行",day:7,type:"auto",wave:1},
-  {id:5,name:"聯邦銀行",day:9,type:"manual",wave:2},
-  {id:6,name:"元大銀行",day:10,type:"manual",wave:2},
-  {id:7,name:"台新銀行",day:12,type:"auto",wave:2},
-  {id:8,name:"新光銀行",day:14,type:"auto",wave:2},
-  {id:9,name:"中國信託",day:20,type:"auto",wave:3},
-  {id:10,name:"兆豐銀行",day:21,type:"manual",wave:3},
-  {id:11,name:"彰化銀行",day:31,type:"manual",wave:3},
+  {id:1,name:"遠東商銀",day:2,type:"manual",wave:2},
+  {id:2,name:"國泰世華",day:3,type:"auto",wave:2},
+  {id:3,name:"華南銀行",day:7,type:"auto",wave:2},
+  {id:4,name:"玉山銀行",day:7,type:"auto",wave:2},
+  {id:5,name:"聯邦銀行",day:9,type:"manual",wave:3},
+  {id:6,name:"元大銀行",day:10,type:"manual",wave:3},
+  {id:7,name:"台新銀行",day:12,type:"auto",wave:3},
+  {id:8,name:"新光銀行",day:14,type:"auto",wave:3},
+  {id:9,name:"中國信託",day:20,type:"auto",wave:1},
+  {id:10,name:"兆豐銀行",day:21,type:"manual",wave:1},
+  {id:11,name:"彰化銀行",day:31,type:"manual",wave:1},
   {id:12,name:"台北富邦",day:null,type:"manual",wave:null}
 ];
 
 const WAVES=[
-  {id:1,label:"第一波",checkDay:18,banks:[1,2,3,4],color:"#60a5fa",next:false},
-  {id:2,label:"第二波",checkDay:25,banks:[5,6,7,8],color:"#a78bfa",next:false},
-  {id:3,label:"第三波",checkDay:4,banks:[9,10,11],color:"#34d399",next:true}
+  {id:1,label:"第一波",checkDay:4,banks:[9,10,11],color:"#34d399",next:true},
+  {id:2,label:"第二波",checkDay:18,banks:[1,2,3,4],color:"#60a5fa",next:false},
+  {id:3,label:"第三波",checkDay:25,banks:[5,6,7,8],color:"#a78bfa",next:false}
 ];
 
 // --- 功能函數 ---
@@ -93,9 +82,9 @@ function getDue(d){
 }
 function getWD(w){
   const t=new Date();t.setHours(0,0,0,0);
-  if(w.next)return new Date(t.getFullYear(),t.getMonth()+1,w.checkDay);
+  if(w.next)return new Date(t.getFullYear(),t.getMonth(),w.checkDay); // 注意：4號本來就是次月 logic
   const c=new Date(t.getFullYear(),t.getMonth(),w.checkDay);
-  return c<t?new Date(t.getFullYear(),t.getMonth()+1,w.checkDay):c;
+  return c;
 }
 function daysTo(d){const t=new Date();t.setHours(0,0,0,0);return Math.ceil((d-t)/86400000);}
 function fmt(d){return d?d.getMonth()+1+"/"+d.getDate():"—";}
@@ -108,7 +97,7 @@ function fmtMonthLabel(key){
   const [y,m]=key.split("-");
   return y+"年"+m+"月";
 }
-function curWave(){const d=new Date().getDate();return d<=18?1:d<=25?2:3;}
+function curWave(){const d=new Date().getDate();return d<=4?1:d<=18?2:3;}
 function monthKey(){const t=new Date();return t.getFullYear()+"-"+(t.getMonth()+1);}
 
 // --- 狀態管理 ---
@@ -165,7 +154,7 @@ function archiveAndReset(){
   });
   confirmed[k]=newMonthData;
   localStorage.setItem("confirmed",JSON.stringify(confirmed));
-  showBanner("🎉 第三波完成！第一、二波已清除，等待下月繳款！");
+  showBanner("🎉 本月對帳全部完成！歷史已存檔並重置。");
 }
 
 let wave3WasComplete=checkWave3Complete();
@@ -193,7 +182,6 @@ function showVersionHistory(){
   </div></div>`;
 }
 
-// --- 互動邏輯 ---
 function confirmPay(id){
   const bank=BANKS.find(b=>b.id===id);
   const mr=document.getElementById("modal-root");
@@ -355,7 +343,7 @@ function renderSheetPage(){
       <div style="font-size:11px;color:#334155;margin-top:6px">確認繳款後記錄會出現在這裡</div>
     </div>`;
   }
-  const waveColor={1:"#60a5fa",2:"#a78bfa",3:"#34d399",null:"#64748b"};
+  const waveColor={1:"#34d399",2:"#60a5fa",3:"#a78bfa",null:"#64748b"};
   const waveLabel={1:"第一波",2:"第二波",3:"第三波",null:"—"};
   return sortedMonths.map(mk=>{
     const entries=Object.values(allMonths[mk]);
@@ -438,7 +426,7 @@ function render(){
     </div>`;
   const tabNavHtml=`<div class="tab-nav">
       <button class="tab-btn ${currentTab==="dashboard"?"active":""}" onclick="setTab('dashboard')">📊 總覽</button>
-      <button class="tab-btn ${currentTab==="sheet"?"active":""}" onclick="setTab('sheet')">📋 繳款記錄</button>
+      <button class="tab-btn ${currentTab==="sheet"?"active":""}" onclick="setTab('sheet')">📋 歷史</button>
     </div>`;
 
   if(currentTab==="sheet"){
@@ -447,8 +435,7 @@ function render(){
       headerHtml+
       `<div class="page-content" style="max-width:960px;margin:0 auto;padding:16px 12px">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8">
-          <span style="font-size:11px;color:#475569">PAYMENT HISTORY · 各月繳款記錄</span>
-          <span style="font-size:10px;color:#334155">點擊月份可展開/收合</span>
+          <span style="font-size:11px;color:#475569">PAYMENT HISTORY · 歷史存檔</span>
         </div>
         ${renderSheetPage()}
       </div>`+tabNavHtml;
@@ -467,8 +454,8 @@ function render(){
   const wave3Banner=w3done?`<div class="wave3-done-banner">
     <span style="font-size:22px">🎉</span>
     <div>
-      <div style="font-size:13px;font-weight:700;color:#34d399">第三波全部完成！</div>
-      <div style="font-size:11px;color:#475569;margin-top:3px">本月所有波段已歸檔。第一、二波確認已清除，等待下月重新計算。</div>
+      <div style="font-size:13px;font-weight:700;color:#34d399">本月對帳全部完成！</div>
+      <div style="font-size:11px;color:#475569;margin-top:3px">所有波段已存入歷史記錄並重置。</div>
     </div>
   </div>`:"";
   const alertsHtml=alerts.length>0
@@ -504,18 +491,14 @@ function render(){
       ${wave3Banner}
       ${alertsHtml}
       <div class="stat-grid">
-        <div class="stat-card"><div style="font-size:9px;color:#475569;margin-bottom:6px">總卡片數</div><div style="font-size:26px;font-weight:700;color:#f1f5f9">${BANKS.length}</div><div style="font-size:10px;color:#64748b">家銀行</div></div>
-        <div class="stat-card"><div style="font-size:9px;color:#475569;margin-bottom:6px">手動繳費</div><div style="font-size:26px;font-weight:700;color:#f87171">${manual.length}</div><div style="font-size:10px;color:#64748b">需要留意</div></div>
-        <div class="stat-card"><div style="font-size:9px;color:#475569;margin-bottom:6px">已確認</div><div style="font-size:26px;font-weight:700;color:#34d399">${doneCount}</div><div style="font-size:10px;color:#64748b">本月完成</div></div>
-        ${nextW?`<div class="stat-card" style="border-color:rgba(59,130,246,.3)"><div style="font-size:9px;color:#475569;margin-bottom:6px">下次檢查</div><div style="font-size:26px;font-weight:700;color:#60a5fa">${nextW.dl===0?"今天":nextW.dl+"天"}</div><div style="font-size:10px;color:#64748b">${nextW.label} · ${fmt(nextW.cd)}</div></div>`:""}
+        <div class="stat-card"><div style="font-size:9px;color:#475569;margin-bottom:6px">卡片總數</div><div style="font-size:26px;font-weight:700;color:#f1f5f9">${BANKS.length}</div><div style="font-size:10px;color:#64748b">家銀行</div></div>
+        <div class="stat-card"><div style="font-size:9px;color:#475569;margin-bottom:6px">手動繳費</div><div style="font-size:26px;font-weight:700;color:#f87171">${manual.length}</div><div style="font-size:10px;color:#64748b">需手動完成</div></div>
+        <div class="stat-card"><div style="font-size:9px;color:#475569;margin-bottom:6px">已確認</div><div style="font-size:26px;font-weight:700;color:#34d399">${doneCount}</div><div style="font-size:10px;color:#64748b">本週期</div></div>
+        ${nextW?`<div class="stat-card" style="border-color:rgba(59,130,246,.3)"><div style="font-size:9px;color:#475569;margin-bottom:6px">下次對帳</div><div style="font-size:26px;font-weight:700;color:${nextW.color}">${nextW.dl===0?"今日":nextW.dl+"天"}</div><div style="font-size:10px;color:#64748b">${nextW.label} · ${nextW.checkDay}號</div></div>`:""}
       </div>
       <div class="card" style="padding:16px">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8">
-          <span style="font-size:11px;color:#475569">WAVE TRACKER · 檢查波段</span>
-          <div style="display:flex;align-items:center;gap:6">
-            <span class="pulse" style="width:7px;height:7px;border-radius:50%;background:#3b82f6;display:inline-block"></span>
-            <span style="font-size:11px;color:#64748b">本月 ${today.getDate()} 號</span>
-          </div>
+          <span style="font-size:11px;color:#475569">WAVE TRACKER · 對帳波段</span>
         </div>
         <div style="position:relative">
           <div style="display:flex;justify-content:space-between;margin-bottom:10px">
@@ -523,29 +506,21 @@ function render(){
               const cd=getWD(wave),days=daysTo(cd),isPast=days<0,isCur=wave.id===cw;
               const wDone=wave.banks.filter(id=>BANKS.find(b=>b.id===id)).every(id=>isDone(id));
               return`<div style="flex:1;text-align:center">
-                <div style="width:34px;height:34px;border-radius:50%;margin:0 auto 7px;background:${isPast?"#1e2330":isCur?wave.color:"#1a2035"};border:2px solid ${isPast?"#1e2330":wave.color};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:${isPast?"#334155":isCur?"#0a0c10":wave.color};box-shadow:${isCur?"0 0 16px "+wave.color+"55":"none"}">
+                <div style="width:34px;height:34px;border-radius:50%;margin:0 auto 7px;background:${isPast?"#1e2330":isCur?wave.color:"#1a2035"};border:2px solid ${isPast?"#1e2330":wave.color};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:${isPast?"#334155":isCur?"#0a0c10":wave.color};box-shadow:${isCur?"0 0-16px "+wave.color+"55":"none"}">
                   ${wDone?"✓":wave.id}
                 </div>
                 <div style="font-size:12px;color:${isPast?"#334155":"#94a3b8"}">${wave.label}</div>
-                <div style="font-size:10px;color:#475569;margin-top:2px">${wave.next?"次月":""}${wave.checkDay}號</div>
-                <div style="font-size:11px;margin-top:3px;color:${isPast?"#334155":days===0?"#fbbf24":wave.color}">${wDone?"已完成":isPast?"已過":days===0?"今天！":days+"天後"}</div>
+                <div style="font-size:10px;color:#475569;margin-top:2px">${wave.checkDay}號</div>
               </div>`;
             }).join("")}
           </div>
-          <div style="position:absolute;top:17px;left:16%;right:16%;height:2px;background:#1e2330;z-index:0">
-            <div style="height:100%;background:linear-gradient(90deg,#3b82f6,#a78bfa);width:${cw===1?"0%":cw===2?"50%":"100%"}"></div>
-          </div>
-        </div>
-        <div style="height:1px;background:linear-gradient(90deg,transparent,#1e2330,transparent);margin:16px 0 12px"></div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-          ${WAVES.map(wave=>`<div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap"><span style="font-size:11px;color:#475569">${wave.label}：</span>${wave.banks.map(bid=>{const b=BANKS.find(x=>x.id===bid);return`<span class="chip w${wave.id}">${b?b.name:""}</span>`;}).join("")}</div>`).join("")}
         </div>
       </div>
       <div class="card">
         <div style="padding:12px 14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10;border-bottom:1px solid #1a1f2e">
-          <span style="font-size:11px;color:#475569">BANK MONITOR · ${banks.length} 家</span>
+          <span style="font-size:11px;color:#475569">BANK MONITOR</span>
           <div style="display:flex;gap:6px;flex-wrap:wrap">
-            ${["all","1","2","3"].map(w=>`<button class="wave-btn ${fw===w?"active":""}" onclick="setFw('${w}')">${w==="all"?"全部":"第"+["一","二","三"][Number(w)-1]+"波"}</button>`).join("")}
+            ${["all","1","2","3"].map(w=>`<button class="wave-btn ${fw===w?"active":""}" onclick="setFw('${w}')">${w==="all"?"全部":WAVES.find(x=>String(x.id)===w).label}</button>`).join("")}
             <button onclick="resetAll()" style="border:1px solid rgba(239,68,68,.2);background:rgba(239,68,68,.08);color:#f87171;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:11px;font-family:inherit">重置</button>
           </div>
         </div>
@@ -562,29 +537,18 @@ function render(){
               ${done&&confirmedData?`<div style="font-size:10px;color:#34d399;margin-top:2px">✓ 確認時間：${fmtTime(confirmedData.ts)}</div>`:""}
             </div>
             <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-              ${wave?`<span class="chip w${wave.id}" style="font-size:10px">${wave.label}</span>`:""}
+              ${wave?`<span class="chip" style="background:${wave.color}15; color:${wave.color}; border:1px solid ${wave.color}30; font-size:10px">${wave.label}</span>`:""}
               <span class="chip ${bank.type==="manual"?"manual":"auto"}">${bank.type==="manual"?"⚠ 手動":"✓ 自動"}</span>
               ${!done
                 ?`<button class="cbtn" onclick="confirmPay(${bank.id})">確認繳款</button>`
-                :`<button class="cbtn done" onclick="confirmPay(${bank.id})">✓ 已確認</button><button class="cbtn cancel" onclick="cancelPay(${bank.id})">✕ 取消繳款</button>`}
+                :`<button class="cbtn done" onclick="confirmPay(${bank.id})">✓ 已確認</button><button class="cbtn cancel" onclick="cancelPay(${bank.id})">✕ 取消</button>`}
             </div>
           </div>`;
         }).join("")}
       </div>
-      <div style="padding:12px 14px;border-radius:10px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);display:flex;align-items:flex-start;gap:10">
-        <span style="font-size:14px;flex-shrink:0">⚠️</span>
-        <div>
-          <div style="font-size:12px;color:#fca5a5;font-weight:600;margin-bottom:3px">手動繳費提醒</div>
-          <div style="font-size:12px;color:#ef4444;line-height:1.7">${manual.map(b=>b.name).join("、")} 需手動繳款，請在截止日前完成。</div>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:18px;padding-bottom:14px;font-size:10px;color:#475569">
-        截止日 = 上月結帳日 + 18 天 &nbsp;·&nbsp; <span style="color:#818cf8;cursor:pointer" onclick="showVersionHistory()">v${VERSION.num}</span> &nbsp;·&nbsp; ${VERSION.date}
-      </div>
     </div>`+tabNavHtml;
 }
 
-// 綁定全域函數
 window.setFw=setFw;
 window.setTab=setTab;
 window.toggleNotif=toggleNotif;
