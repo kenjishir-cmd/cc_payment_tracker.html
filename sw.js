@@ -1,46 +1,51 @@
-/* 信用卡管理 PWA - 萬用自動更新 Service Worker (v3.7.2) */
+/* 信用卡管理 PWA - 離線萬用版 sw.js (v3.7.2) */
 
-// 每次更新 index.html 內容後，請手動將下方的版本號跳一號 (例如 3.7.2 -> 3.7.3)
-// 這會觸發瀏覽器偵測檔案變動，進而更新你的 App 內容。
 const CACHE_NAME = 'credit-manager-v3.7.2';
 
-// 1. 安裝階段：跳過等待，立刻讓新版生效
-self.addEventListener('install', (e) => {
-  self.skipWaiting(); 
-});
+// 離線必備的核心路徑
+const CORE_ASSETS = [
+  '/',
+  '/index.html'
+];
 
-// 2. 激活階段：徹底清理所有舊版本的快取資料夾
-self.addEventListener('activate', (e) => {
+// 1. 安裝：將核心檔案存入手機硬碟
+self.addEventListener('install', (e) => {
+  self.skipWaiting();
   e.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            console.log('PWA 更新：清理舊快取庫', key);
-            return caches.delete(key);
-          }
-        })
-      );
-    }).then(() => self.clients.claim()) // 立即取得控制權
+    caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_ASSETS))
   );
 });
 
-// 3. 核心邏輯：Network-First (網路優先)
-// 有網路時優先抓伺服器最新的 index.html，斷網時才顯示上次存好的內容
+// 2. 激活：清理舊版快取庫，騰出空間
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys().then(keys => Promise.all(
+      keys.map(key => key !== CACHE_NAME ? caches.delete(key) : null)
+    ))
+  );
+  return self.clients.claim();
+});
+
+// 3. 攔截：離線讀取邏輯 (Stale-While-Revalidate)
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET' || !e.request.url.startsWith('http')) return;
 
   e.respondWith(
-    fetch(e.request)
-      .then((res) => {
-        // 抓到新資源，同步更新快取
-        const clone = res.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
-        return res;
-      })
-      .catch(() => {
-        // 沒網路時，去快取找資源
-        return caches.match(e.request);
-      })
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.match(e.request).then((cachedResponse) => {
+        // 背景發起網路請求更新快取
+        const networkFetch = fetch(e.request).then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            cache.put(e.request, networkResponse.clone());
+          }
+          return networkResponse;
+        }).catch(() => {
+          // 網路失敗時不報錯，靜默處理
+        });
+
+        // 優先回傳快取內容（這行保證了離線開啟），如果沒快取才等網路
+        return cachedResponse || networkFetch;
+      });
+    })
   );
 });
