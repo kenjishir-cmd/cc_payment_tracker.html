@@ -1,7 +1,438 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/><title>信用卡繳款管理</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/><style>html{background:#0a0c10;overscroll-behavior-y:none}body{background:#0a0c10;color:#e2e8f0;font-family:'Noto Sans TC',sans-serif;margin:0;padding:0;min-height:100vh;overscroll-behavior-y:none}#app{width:100%;min-height:100vh}*{box-sizing:border-box;margin:0;padding:0}.card{background:#111318;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}.stat-card{background:#0e1117;border:1px solid #1e2330;border-radius:10px;padding:14px}.wave-btn{border:1px solid #1e2330;background:#111318;color:#64748b;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px;font-family:inherit}.wave-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}.row{border-bottom:1px solid #1a1f2e;padding:11px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row:last-child{border-bottom:none}.avatar{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}.chip{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.manual{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25)}.auto{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2)}.w1{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);border-radius:6px}.w2{background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2);border-radius:6px}.w3{background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);border-radius:6px}.pulse{animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}.notif-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:500}.notif-on{background:rgba(52,211,153,.12);color:#34d399;border:1px solid rgba(52,211,153,.25)}.notif-off{background:rgba(100,116,139,.08);color:#64748b;border:1px solid #1e2330}.banner{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:#052e16;border:1px solid rgba(52,211,153,.3);color:#34d399;padding:9px 16px;border-radius:10px;font-size:12px;z-index:999;white-space:nowrap}.offline-banner{background:#450a0a!important;color:#f87171!important;border-color:rgba(239,68,68,0.3)!important}.due-info{color:#a78bfa;font-size:13px;margin-top:4px;font-weight:500}.cbtn{border:1px solid #334155;background:none;color:#64748b;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:11px;font-family:inherit;margin-top:4px}.cbtn.done{background:rgba(52,211,153,.1);color:#34d399;border-color:rgba(52,211,153,.3)}.cbtn.cancel{background:rgba(239,68,68,.08);color:#f87171;border-color:rgba(239,68,68,.2);margin-top:4px}.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}.modal{background:#111318;border:1px solid #1e2330;border-radius:16px;padding:24px;width:100%;max-width:320px;text-align:center}.version-badge{display:inline-flex;align-items:center;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);color:#818cf8;border-radius:20px;padding:2px 10px;font-size:10px;font-weight:600;letter-spacing:.5px;cursor:pointer}.notif-panel{background:#0e1117;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px;overflow:hidden}.notif-panel-header{padding:12px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;justify-content:space-between}.notif-item{padding:10px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;gap:10px}.notif-item:last-child{border-bottom:none}.notif-item.urgent{background:rgba(239,68,68,.04)}.notif-item.today{background:rgba(251,191,36,.04)}.notif-item.soon{background:rgba(96,165,250,.03)}.notif-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.notif-dot.red{background:#ef4444}.notif-dot.yellow{background:#fbbf24}.notif-dot.blue{background:#3b82f6}.dismiss-btn{background:none;border:1px solid #1e2330;color:#475569;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;font-family:inherit;flex-shrink:0}.tab-nav{display:flex;gap:4px;padding:10px 16px;border-top:1px solid #1e2330;background:#0a0c10;position:fixed;bottom:0;left:0;right:0;z-index:100;justify-content:center}.tab-btn{padding:9px 32px;border-radius:10px;border:1px solid #1e2330;background:none;color:#64748b;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}.tab-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}.page-content{padding-bottom:100px}.sheet-table{width:100%;border-collapse:collapse;font-size:12px}.sheet-table th{background:#0e1117;color:#475569;font-size:10px;font-weight:600;padding:8px 12px;text-align:left;border-bottom:1px solid #1e2330;letter-spacing:.5px}.sheet-table td{padding:9px 12px;border-bottom:1px solid #1a1f2e;color:#94a3b8;vertical-align:middle}.sheet-table tr:last-child td{border-bottom:none}.month-header{background:#0e1117;border:1px solid #1e2330;border-radius:10px;margin-bottom:10px;overflow:hidden}.month-header-title{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}.wave3-done-banner{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px}</style></head><body><div id="app"></div><div id="modal-root"></div><script>const VERSIONS=[{num:"3.6.0",date:"2026-05-04",changes:["✦ 修正各波段截止日計算邏輯","✦ 第一波用上月結帳日+18天","✦ 第二、三波用本月結帳日+18天","✦ 兆豐銀行截止日固定每月6號"]},{num:"3.5.0",date:"2026-05-04",changes:["✦ 加回手動/自動繳費標示","✦ 修正兆豐銀行截止日為每月固定6號","✦ 銀行清單加回左側彩色頭像"]},{num:"3.4.2",date:"2026-05-03",changes:["✦ 將結帳日與截止日調整為紫色字體並加大"]},{num:"3.4.1",date:"2026-05-03",changes:["✦ 修復Samsung瀏覽器黑畫面相容性問題"]},{num:"3.4.0",date:"2026-05-02",changes:["✦ 修正截止日計算邏輯（上月結帳→本月截止）"]},{num:"1.0.0",date:"2026-04-24",changes:["✦ 初始版本發布"]}];const VERSION=VERSIONS[0];const BANKS=[{id:9,name:"中國信託",day:20,type:"auto",wave:1,dueDay:null},{id:10,name:"兆豐銀行",day:21,type:"manual",wave:1,dueDay:6},{id:11,name:"彰化銀行",day:31,type:"manual",wave:1,dueDay:null},{id:1,name:"遠東商銀",day:2,type:"manual",wave:2,dueDay:null},{id:2,name:"國泰世華",day:3,type:"auto",wave:2,dueDay:null},{id:3,name:"華南銀行",day:7,type:"auto",wave:2,dueDay:null},{id:4,name:"玉山銀行",day:7,type:"auto",wave:2,dueDay:null},{id:5,name:"聯邦銀行",day:9,type:"auto",wave:3,dueDay:null},{id:6,name:"元大銀行",day:10,type:"manual",wave:3,dueDay:null},{id:7,name:"台新銀行",day:12,type:"auto",wave:3,dueDay:null},{id:8,name:"新光銀行",day:14,type:"auto",wave:3,dueDay:null},{id:12,name:"台北富邦",day:null,type:"manual",wave:null,dueDay:null}];const WAVES=[{id:1,label:"第一波",checkDay:4,banks:[9,10,11],color:"#34d399",next:false},{id:2,label:"第二波",checkDay:18,banks:[1,2,3,4],color:"#60a5fa",next:false},{id:3,label:"第三波",checkDay:25,banks:[5,6,7,8],color:"#a78bfa",next:false}];function getDue(bank){if(!bank.day)return null;if(bank.dueDay){const t=new Date();return new Date(t.getFullYear(),t.getMonth(),bank.dueDay);}const t=new Date();let refMonth;if(bank.wave===1){refMonth=new Date(t.getFullYear(),t.getMonth()-1,1);}else{refMonth=new Date(t.getFullYear(),t.getMonth(),1);}const lastDay=new Date(refMonth.getFullYear(),refMonth.getMonth()+1,0).getDate();const billingDate=new Date(refMonth.getFullYear(),refMonth.getMonth(),Math.min(bank.day,lastDay));const due=new Date(billingDate);due.setDate(due.getDate()+18);return due;}function getWD(w){const t=new Date();t.setHours(0,0,0,0);return new Date(t.getFullYear(),t.getMonth(),w.checkDay);}function daysTo(d){const t=new Date();t.setHours(0,0,0,0);return Math.ceil((d-t)/86400000);}function fmt(d){return d?d.getMonth()+1+"/"+d.getDate():"—";}function fmtTime(ts){if(!ts)return"";const d=new Date(ts);return(d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");}function fmtMonthLabel(key){const[y,m]=key.split("-");return y+"年"+m+"月";}function curWave(){const d=new Date().getDate();return d<=4?1:d<=18?2:3;}function monthKey(){const t=new Date();return t.getFullYear()+"-"+(t.getMonth()+1);}let fw="all",remOn=localStorage.getItem("rem")==="1",banner="",bTimer=null,isOffline=false;let confirmed=JSON.parse(localStorage.getItem("confirmed")||"{}");let dismissedNotifs=JSON.parse(localStorage.getItem("dismissedNotifs")||"{}");let history=JSON.parse(localStorage.getItem("payHistory")||"{}");let currentTab="dashboard",sheetExpandedMonths={};const today=new Date(),cw=curWave();window.addEventListener('offline',()=>{isOffline=true;showBanner("⚠️ 目前處於離線模式");});window.addEventListener('online',()=>{isOffline=false;showBanner("✅ 網路已恢復連線");});if(!navigator.onLine){isOffline=true;}function showBanner(msg){banner=msg;render();if(bTimer)clearTimeout(bTimer);if(!isOffline||msg.includes("恢復")){bTimer=setTimeout(()=>{banner=isOffline?"⚠️ 目前處於離線模式":"";render();},3000);}}function getConfirmed(id){const k=monthKey();return confirmed[k]&&confirmed[k][id]?confirmed[k][id]:null;}function isDone(id){return !!getConfirmed(id);}function getWave3BankIds(){return WAVES.find(w=>w.id===3).banks;}function checkWave3Complete(){const w3ids=getWave3BankIds().filter(id=>BANKS.find(b=>b.id===id));return w3ids.every(id=>isDone(id));}function archiveAndReset(){const k=monthKey();const cur=confirmed[k]||{};if(!history[k])history[k]={};Object.keys(cur).forEach(id=>{const bank=BANKS.find(b=>b.id===Number(id));if(!bank)return;history[k][id]={ts:cur[id].ts,bankName:bank.name,wave:bank.wave,type:bank.type,day:bank.day};});localStorage.setItem("payHistory",JSON.stringify(history));const w3ids=new Set(getWave3BankIds());const newMonthData={};Object.keys(cur).forEach(id=>{if(w3ids.has(Number(id)))newMonthData[id]=cur[id];});confirmed[k]=newMonthData;localStorage.setItem("confirmed",JSON.stringify(confirmed));showBanner("🎉 本月對帳全部完成！歷史已存檔。");}let wave3WasComplete=checkWave3Complete();function checkAndTriggerWave3(){const nowComplete=checkWave3Complete();if(!wave3WasComplete&&nowComplete){wave3WasComplete=true;archiveAndReset();}else{wave3WasComplete=nowComplete;}}function showVersionHistory(){const mr=document.getElementById("modal-root");mr.innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()" style="max-height:80vh;overflow-y:auto;text-align:left"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><div style="font-size:16px;font-weight:700;color:#f1f5f9">📋 更新履歷</div><button onclick="closeModal()" style="background:none;border:1px solid #334155;color:#64748b;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:inherit;font-size:12px">關閉</button></div>${VERSIONS.map((v,i)=>`<div style="margin-bottom:16px;padding-bottom:16px;border-bottom:${i<VERSIONS.length-1?"1px solid #1e2330":"none"}"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap"><span style="background:rgba(99,102,241,.15);color:#818cf8;border:1px solid rgba(99,102,241,.3);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700">v${v.num}</span>${i===0?"<span style='background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);border-radius:20px;padding:2px 8px;font-size:10px'>最新</span>":""}<span style="font-size:11px;color:#475569">${v.date}</span></div>${v.changes.map(c=>`<div style="font-size:12px;color:#64748b;line-height:1.8;padding-left:4px">${c}</div>`).join("")}</div>`).join("")}</div></div>`;}function confirmPay(id){const bank=BANKS.find(b=>b.id===id);const mr=document.getElementById("modal-root");mr.innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()"><div style="font-size:22px;margin-bottom:12px">💳</div><div style="font-size:16px;font-weight:700;color:#f1f5f9;margin-bottom:6px">${bank.name}</div><div style="font-size:13px;color:#64748b;margin-bottom:20px">確定已完成繳款了嗎？</div><div style="display:flex;gap:10px;justify-content:center"><button onclick="closeModal()" style="flex:1;padding:10px;border:1px solid #334155;background:none;color:#94a3b8;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">取消</button><button onclick="doConfirm(${id})" style="flex:1;padding:10px;border:none;background:rgba(52,211,153,.15);color:#34d399;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600">確認</button></div></div></div>`;}function cancelPay(id){const bank=BANKS.find(b=>b.id===id);const confirmedData=getConfirmed(id);const mr=document.getElementById("modal-root");mr.innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()"><div style="font-size:22px;margin-bottom:12px">↩️</div><div style="font-size:16px;font-weight:700;color:#f1f5f9;margin-bottom:6px">${bank.name}</div><div style="font-size:12px;color:#34d399;margin-bottom:4px">✓ 已確認繳款</div><div style="font-size:11px;color:#475569;margin-bottom:16px">確認時間：${fmtTime(confirmedData.ts)}<br><br>確定要取消此確認記錄嗎？</div><div style="display:flex;gap:10px;justify-content:center"><button onclick="closeModal()" style="flex:1;padding:10px;border:1px solid #334155;background:none;color:#94a3b8;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">保留</button><button onclick="doCancel(${id})" style="flex:1;padding:10px;border:none;background:rgba(239,68,68,.15);color:#f87171;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600">取消確認</button></div></div></div>`;}function doConfirm(id){const k=monthKey();if(!confirmed[k])confirmed[k]={};confirmed[k][id]={ts:Date.now()};localStorage.setItem("confirmed",JSON.stringify(confirmed));closeModal();checkAndTriggerWave3();if(!banner)showBanner("✓ 已標記確認！");render();}function doCancel(id){const k=monthKey();if(confirmed[k])delete confirmed[k][id];localStorage.setItem("confirmed",JSON.stringify(confirmed));wave3WasComplete=false;closeModal();showBanner("已取消確認");render();}function closeModal(){document.getElementById("modal-root").innerHTML="";}function resetAll(){if(!confirm("確定要重置本月所有確認記錄嗎？"))return;const k=monthKey();delete confirmed[k];localStorage.setItem("confirmed",JSON.stringify(confirmed));wave3WasComplete=false;render();}function isDismissed(id){const k=monthKey();return !!(dismissedNotifs[k]&&dismissedNotifs[k][id]);}function dismissAlert(id){const k=monthKey();if(!dismissedNotifs[k])dismissedNotifs[k]={};dismissedNotifs[k][id]=true;localStorage.setItem("dismissedNotifs",JSON.stringify(dismissedNotifs));render();}function dismissAllAlerts(){const alerts=getPageAlerts();const k=monthKey();if(!dismissedNotifs[k])dismissedNotifs[k]={};alerts.forEach(a=>{dismissedNotifs[k][a.id]=true;});localStorage.setItem("dismissedNotifs",JSON.stringify(dismissedNotifs));render();}function getPageAlerts(){const alerts=[];WAVES.forEach(w=>{const cd=getWD(w);const days=daysTo(cd);const manualBanks=w.banks.map(id=>BANKS.find(b=>b.id===id)).filter(b=>b&&b.type==="manual");const unconfirmed=manualBanks.filter(b=>!isDone(b.id));if(days===0)alerts.push({id:"wave-check-"+w.id,level:"today",icon:"📋",title:w.label+"檢查日！",body:"今天（"+fmt(cd)+"）請對帳"});else if(days===1)alerts.push({id:"wave-soon-"+w.id,level:"urgent",icon:"⚡",title:w.label+"明天對帳",body:"明天（"+fmt(cd)+"）對帳日"});unconfirmed.forEach(b=>{const due=getDue(b);if(!due)return;const dd=daysTo(due);if(dd<=3&&dd>=0){const level=dd===0?"urgent":dd===1?"today":"soon";alerts.push({id:"bank-"+b.id,level,icon:dd===0?"🚨":"⚠️",title:b.name+(dd===0?" 今日截止！":" 明日截止！"),body:"截止日："+fmt(due)});}});});return alerts.filter(a=>!isDismissed(a.id));}function setTab(t){currentTab=t;render();}function setFw(v){fw=v;render();}function toggleSheetMonth(key){sheetExpandedMonths[key]=!sheetExpandedMonths[key];render();}function renderSheetPage(){const k=monthKey();const curData=confirmed[k]||{};const allMonths={};Object.keys(history).forEach(mk=>{if(!allMonths[mk])allMonths[mk]={};Object.assign(allMonths[mk],history[mk]);});Object.keys(curData).forEach(id=>{if(!allMonths[k])allMonths[k]={};if(!allMonths[k][id]){const bank=BANKS.find(b=>b.id===Number(id));if(!bank)return;allMonths[k][id]={ts:curData[id].ts,bankName:bank.name,wave:bank.wave,type:bank.type,day:bank.day};}});const sortedMonths=Object.keys(allMonths).sort((a,b)=>{const[ay,am]=a.split("-").map(Number);const[by,bm]=b.split("-").map(Number);return by!==ay?by-ay:bm-am;});if(sortedMonths.length===0){return`<div style="text-align:center;padding:40px 20px;color:#334155">尚無繳款記錄</div>`;}const waveColor={1:"#34d399",2:"#60a5fa",3:"#a78bfa",null:"#64748b"};const waveLabel={1:"第一波",2:"第二波",3:"第三波",null:"—"};return sortedMonths.map(mk=>{const entries=Object.values(allMonths[mk]);const isExpanded=sheetExpandedMonths[mk]!==false;const rows=entries.map(e=>`<tr><td>${e.bankName}</td><td style="color:${waveColor[e.wave]}">${waveLabel[e.wave]}</td><td><span class="chip ${e.type==="manual"?"manual":"auto"}">${e.type==="manual"?"⚠ 手動":"✓ 自動"}</span></td><td>${fmtTime(e.ts)}</td></tr>`).join("");return`<div class="month-header"><div class="month-header-title" onclick="toggleSheetMonth('${mk}')">${fmtMonthLabel(mk)} (${entries.length} 筆) <span>${isExpanded?"▾":"▸"}</span></div>${isExpanded?`<table class="sheet-table"><thead><tr><th>銀行</th><th>波段</th><th>類型</th><th>時間</th></tr></thead><tbody>${rows}</tbody></table>`:""}</div>`;}).join("");}function render(){const ds=today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate();const bannerHtml=banner?`<div class="banner ${isOffline?"offline-banner":""}">${banner}</div>`:"";const headerHtml=`<div style="border-bottom:1px solid #1e2330;padding:14px 16px;display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px;font-weight:700;color:#f1f5f9">信用卡繳款管理</span><span class="version-badge" onclick="showVersionHistory()">v${VERSION.num} 📋</span></div><div style="text-align:right;font-size:12px;color:#94a3b8">${ds}</div></div>`;const tabNavHtml=`<div class="tab-nav"><button class="tab-btn ${currentTab==="dashboard"?"active":""}" onclick="setTab('dashboard')">📊 總覽</button><button class="tab-btn ${currentTab==="sheet"?"active":""}" onclick="setTab('sheet')">📋 歷史</button></div>`;if(currentTab==="sheet"){document.getElementById("app").innerHTML=bannerHtml+headerHtml+`<div class="page-content" style="padding:16px 12px">${renderSheetPage()}</div>`+tabNavHtml;return;}const nextW=WAVES.map(w=>({...w,dl:daysTo(getWD(w))})).filter(w=>w.dl>=0).sort((a,b)=>a.dl-b.dl)[0];const banks=fw==="all"?BANKS:BANKS.filter(b=>String(b.wave)===fw);const doneCount=BANKS.filter(b=>isDone(b.id)).length;const alerts=getPageAlerts();const w3done=checkWave3Complete();document.getElementById("app").innerHTML=bannerHtml+headerHtml+`<div class="page-content" style="padding:16px 12px">${w3done?`<div class="wave3-done-banner">🎉 本月對帳全部完成！</div>`:""}${alerts.length?`<div class="notif-panel"><div class="notif-panel-header"><div style="display:flex;align-items:center;gap:8px"><span class="pulse" style="width:7px;height:7px;border-radius:50%;background:#ef4444;display:inline-block"></span><span style="font-size:11px;color:#94a3b8;font-weight:600">ALERTS · ${alerts.length} 則提醒</span></div><button onclick="dismissAllAlerts()" style="background:none;border:1px solid #1e2330;color:#475569;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;font-family:inherit">全部忽略</button></div>${alerts.map(a=>`<div class="notif-item ${a.level}"><span class="notif-dot ${a.level==="urgent"?"red":a.level==="today"?"yellow":"blue"}"></span><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:${a.level==="urgent"?"#ef4444":a.level==="today"?"#fbbf24":"#3b82f6"}">${a.icon} ${a.title}</div><div style="font-size:11px;color:#475569;margin-top:2px">${a.body}</div></div><button class="dismiss-btn" onclick="dismissAlert('${a.id}')">忽略</button></div>`).join("")}</div>`:""}
-<div class="stat-grid"><div class="stat-card"><div style="font-size:9px;color:#475569;margin-bottom:6px">已確認</div><div style="font-size:26px;font-weight:700;color:#34d399">${doneCount}/${BANKS.length}</div><div style="font-size:10px;color:#64748b">本月完成</div></div>${nextW?`<div class="stat-card" style="border-color:rgba(59,130,246,.2)"><div style="font-size:9px;color:#475569;margin-bottom:6px">下次對帳</div><div style="font-size:26px;font-weight:700;color:${nextW.color}">${nextW.dl===0?"今天":nextW.dl+"天"}</div><div style="font-size:10px;color:#64748b">${nextW.label} · ${nextW.checkDay}號</div></div>`:""}</div>
-<div class="card" style="padding:12px"><div style="display:flex;justify-content:space-between;margin-bottom:4px">${WAVES.map(w=>{const days=daysTo(getWD(w));const isPast=days<0;const isCur=w.id===cw;return`<div style="text-align:center;flex:1"><div style="width:30px;height:30px;border-radius:50%;background:${isPast?"#1e2330":isCur?w.color:"#1a2035"};border:2px solid ${isPast?"#1e2330":w.color};margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:${isPast?"#334155":isCur?"#0a0c10":w.color};box-shadow:${isCur?"0 0 14px "+w.color+"55":"none"}">${w.id}</div><div style="font-size:11px;margin-top:4px;color:${isPast?"#334155":"#94a3b8"}">${w.label}</div><div style="font-size:9px;color:#475569">${w.checkDay}號</div><div style="font-size:10px;color:${isPast?"#334155":days===0?"#fbbf24":w.color};margin-top:2px">${isPast?"已過":days===0?"今天！":days+"天後"}</div></div>`;}).join("")}</div></div>
-<div class="card"><div style="padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1a1f2e"><span style="font-size:11px;color:#475569">BANK MONITOR · ${banks.length} 家</span><div style="display:flex;gap:4px;flex-wrap:wrap">${["all","1","2","3"].map(w=>`<button class="wave-btn ${fw===w?"active":""}" onclick="setFw('${w}')">${w==="all"?"全部":`第${["一","二","三"][Number(w)-1]}波`}</button>`).join("")}<button onclick="resetAll()" style="border:1px solid rgba(239,68,68,.2);background:rgba(239,68,68,.08);color:#f87171;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:11px;font-family:inherit">重置</button></div></div>${banks.map(bank=>{const wave=WAVES.find(w=>w.id===bank.wave);const due=getDue(bank);const done=isDone(bank.id);const confirmedData=getConfirmed(bank.id);return`<div class="row" style="opacity:${done?0.55:1}"><div class="avatar" style="background:${wave?wave.color+"18":"#1e2330"};border:1px solid ${wave?wave.color+"30":"#1e2330"};color:${wave?wave.color:"#475569"}">${bank.name[0]}</div><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:500;color:#cbd5e1;text-decoration:${done?"line-through":"none"}">${bank.name}</div><div class="due-info">${bank.day?"結帳 "+bank.day+" 號 → 截止 "+fmt(due):"結帳日未知"}</div>${done&&confirmedData?`<div style="font-size:10px;color:#34d399;margin-top:2px">✓ 確認時間：${fmtTime(confirmedData.ts)}</div>`:""}</div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">${wave?`<span class="chip w${wave.id}" style="font-size:10px">${wave.label}</span>`:""}<span class="chip ${bank.type==="manual"?"manual":"auto"}">${bank.type==="manual"?"⚠ 手動":"✓ 自動"}</span>${!done?`<button class="cbtn" onclick="confirmPay(${bank.id})">確認繳款</button>`:`<button class="cbtn done" onclick="confirmPay(${bank.id})">✓ 已確認</button><button class="cbtn cancel" onclick="cancelPay(${bank.id})">✕ 取消</button>`}</div></div>`;}).join("")}</div></div>`+tabNavHtml;}window.setFw=setFw;window.setTab=setTab;window.confirmPay=confirmPay;window.cancelPay=cancelPay;window.doConfirm=doConfirm;window.doCancel=doCancel;window.closeModal=closeModal;window.resetAll=resetAll;window.dismissAlert=dismissAlert;window.dismissAllAlerts=dismissAllAlerts;window.showVersionHistory=showVersionHistory;window.toggleSheetMonth=toggleSheetMonth;render();</script></body></html><!DOCTYPE html><html lang="zh-TW"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/><title>信用卡繳款管理</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/><style>html{background:#0a0c10;overscroll-behavior-y:none}body{background:#0a0c10;color:#e2e8f0;font-family:'Noto Sans TC',sans-serif;margin:0;padding:0;min-height:100vh;overscroll-behavior-y:none}#app{width:100%;min-height:100vh}*{box-sizing:border-box;margin:0;padding:0}.card{background:#111318;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}.stat-card{background:#0e1117;border:1px solid #1e2330;border-radius:10px;padding:14px}.wave-btn{border:1px solid #1e2330;background:#111318;color:#64748b;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px;font-family:inherit}.wave-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}.row{border-bottom:1px solid #1a1f2e;padding:11px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row:last-child{border-bottom:none}.avatar{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}.chip{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.manual{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25)}.auto{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2)}.w1{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);border-radius:6px}.w2{background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2);border-radius:6px}.w3{background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);border-radius:6px}.pulse{animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}.notif-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:500}.notif-on{background:rgba(52,211,153,.12);color:#34d399;border:1px solid rgba(52,211,153,.25)}.notif-off{background:rgba(100,116,139,.08);color:#64748b;border:1px solid #1e2330}.banner{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:#052e16;border:1px solid rgba(52,211,153,.3);color:#34d399;padding:9px 16px;border-radius:10px;font-size:12px;z-index:999;white-space:nowrap}.offline-banner{background:#450a0a!important;color:#f87171!important;border-color:rgba(239,68,68,0.3)!important}.due-info{color:#a78bfa;font-size:13px;margin-top:4px;font-weight:500}.cbtn{border:1px solid #334155;background:none;color:#64748b;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:11px;font-family:inherit;margin-top:4px}.cbtn.done{background:rgba(52,211,153,.1);color:#34d399;border-color:rgba(52,211,153,.3)}.cbtn.cancel{background:rgba(239,68,68,.08);color:#f87171;border-color:rgba(239,68,68,.2);margin-top:4px}.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}.modal{background:#111318;border:1px solid #1e2330;border-radius:16px;padding:24px;width:100%;max-width:320px;text-align:center}.version-badge{display:inline-flex;align-items:center;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);color:#818cf8;border-radius:20px;padding:2px 10px;font-size:10px;font-weight:600;letter-spacing:.5px;cursor:pointer}.notif-panel{background:#0e1117;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px;overflow:hidden}.notif-panel-header{padding:12px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;justify-content:space-between}.notif-item{padding:10px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;gap:10px}.notif-item:last-child{border-bottom:none}.notif-item.urgent{background:rgba(239,68,68,.04)}.notif-item.today{background:rgba(251,191,36,.04)}.notif-item.soon{background:rgba(96,165,250,.03)}.notif-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.notif-dot.red{background:#ef4444}.notif-dot.yellow{background:#fbbf24}.notif-dot.blue{background:#3b82f6}.dismiss-btn{background:none;border:1px solid #1e2330;color:#475569;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;font-family:inherit;flex-shrink:0}.tab-nav{display:flex;gap:4px;padding:10px 16px;border-top:1px solid #1e2330;background:#0a0c10;position:fixed;bottom:0;left:0;right:0;z-index:100;justify-content:center}.tab-btn{padding:9px 32px;border-radius:10px;border:1px solid #1e2330;background:none;color:#64748b;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}.tab-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}.page-content{padding-bottom:100px}.sheet-table{width:100%;border-collapse:collapse;font-size:12px}.sheet-table th{background:#0e1117;color:#475569;font-size:10px;font-weight:600;padding:8px 12px;text-align:left;border-bottom:1px solid #1e2330;letter-spacing:.5px}.sheet-table td{padding:9px 12px;border-bottom:1px solid #1a1f2e;color:#94a3b8;vertical-align:middle}.sheet-table tr:last-child td{border-bottom:none}.month-header{background:#0e1117;border:1px solid #1e2330;border-radius:10px;margin-bottom:10px;overflow:hidden}.month-header-title{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}.wave3-done-banner{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px}</style></head><body><div id="app"></div><div id="modal-root"></div><script>const VERSIONS=[{num:"3.6.0",date:"2026-05-04",changes:["✦ 修正各波段截止日計算邏輯","✦ 第一波用上月結帳日+18天","✦ 第二、三波用本月結帳日+18天","✦ 兆豐銀行截止日固定每月6號"]},{num:"3.5.0",date:"2026-05-04",changes:["✦ 加回手動/自動繳費標示","✦ 修正兆豐銀行截止日為每月固定6號","✦ 銀行清單加回左側彩色頭像"]},{num:"3.4.2",date:"2026-05-03",changes:["✦ 將結帳日與截止日調整為紫色字體並加大"]},{num:"3.4.1",date:"2026-05-03",changes:["✦ 修復Samsung瀏覽器黑畫面相容性問題"]},{num:"3.4.0",date:"2026-05-02",changes:["✦ 修正截止日計算邏輯（上月結帳→本月截止）"]},{num:"1.0.0",date:"2026-04-24",changes:["✦ 初始版本發布"]}];const VERSION=VERSIONS[0];const BANKS=[{id:9,name:"中國信託",day:20,type:"auto",wave:1,dueDay:null},{id:10,name:"兆豐銀行",day:21,type:"manual",wave:1,dueDay:6},{id:11,name:"彰化銀行",day:31,type:"manual",wave:1,dueDay:null},{id:1,name:"遠東商銀",day:2,type:"manual",wave:2,dueDay:null},{id:2,name:"國泰世華",day:3,type:"auto",wave:2,dueDay:null},{id:3,name:"華南銀行",day:7,type:"auto",wave:2,dueDay:null},{id:4,name:"玉山銀行",day:7,type:"auto",wave:2,dueDay:null},{id:5,name:"聯邦銀行",day:9,type:"auto",wave:3,dueDay:null},{id:6,name:"元大銀行",day:10,type:"manual",wave:3,dueDay:null},{id:7,name:"台新銀行",day:12,type:"auto",wave:3,dueDay:null},{id:8,name:"新光銀行",day:14,type:"auto",wave:3,dueDay:null},{id:12,name:"台北富邦",day:null,type:"manual",wave:null,dueDay:null}];const WAVES=[{id:1,label:"第一波",checkDay:4,banks:[9,10,11],color:"#34d399",next:false},{id:2,label:"第二波",checkDay:18,banks:[1,2,3,4],color:"#60a5fa",next:false},{id:3,label:"第三波",checkDay:25,banks:[5,6,7,8],color:"#a78bfa",next:false}];function getDue(bank){if(!bank.day)return null;if(bank.dueDay){const t=new Date();return new Date(t.getFullYear(),t.getMonth(),bank.dueDay);}const t=new Date();let refMonth;if(bank.wave===1){refMonth=new Date(t.getFullYear(),t.getMonth()-1,1);}else{refMonth=new Date(t.getFullYear(),t.getMonth(),1);}const lastDay=new Date(refMonth.getFullYear(),refMonth.getMonth()+1,0).getDate();const billingDate=new Date(refMonth.getFullYear(),refMonth.getMonth(),Math.min(bank.day,lastDay));const due=new Date(billingDate);due.setDate(due.getDate()+18);return due;}function getWD(w){const t=new Date();t.setHours(0,0,0,0);return new Date(t.getFullYear(),t.getMonth(),w.checkDay);}function daysTo(d){const t=new Date();t.setHours(0,0,0,0);return Math.ceil((d-t)/86400000);}function fmt(d){return d?d.getMonth()+1+"/"+d.getDate():"—";}function fmtTime(ts){if(!ts)return"";const d=new Date(ts);return(d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");}function fmtMonthLabel(key){const[y,m]=key.split("-");return y+"年"+m+"月";}function curWave(){const d=new Date().getDate();return d<=4?1:d<=18?2:3;}function monthKey(){const t=new Date();return t.getFullYear()+"-"+(t.getMonth()+1);}let fw="all",remOn=localStorage.getItem("rem")==="1",banner="",bTimer=null,isOffline=false;let confirmed=JSON.parse(localStorage.getItem("confirmed")||"{}");let dismissedNotifs=JSON.parse(localStorage.getItem("dismissedNotifs")||"{}");let history=JSON.parse(localStorage.getItem("payHistory")||"{}");let currentTab="dashboard",sheetExpandedMonths={};const today=new Date(),cw=curWave();window.addEventListener('offline',()=>{isOffline=true;showBanner("⚠️ 目前處於離線模式");});window.addEventListener('online',()=>{isOffline=false;showBanner("✅ 網路已恢復連線");});if(!navigator.onLine){isOffline=true;}function showBanner(msg){banner=msg;render();if(bTimer)clearTimeout(bTimer);if(!isOffline||msg.includes("恢復")){bTimer=setTimeout(()=>{banner=isOffline?"⚠️ 目前處於離線模式":"";render();},3000);}}function getConfirmed(id){const k=monthKey();return confirmed[k]&&confirmed[k][id]?confirmed[k][id]:null;}function isDone(id){return !!getConfirmed(id);}function getWave3BankIds(){return WAVES.find(w=>w.id===3).banks;}function checkWave3Complete(){const w3ids=getWave3BankIds().filter(id=>BANKS.find(b=>b.id===id));return w3ids.every(id=>isDone(id));}function archiveAndReset(){const k=monthKey();const cur=confirmed[k]||{};if(!history[k])history[k]={};Object.keys(cur).forEach(id=>{const bank=BANKS.find(b=>b.id===Number(id));if(!bank)return;history[k][id]={ts:cur[id].ts,bankName:bank.name,wave:bank.wave,type:bank.type,day:bank.day};});localStorage.setItem("payHistory",JSON.stringify(history));const w3ids=new Set(getWave3BankIds());const newMonthData={};Object.keys(cur).forEach(id=>{if(w3ids.has(Number(id)))newMonthData[id]=cur[id];});confirmed[k]=newMonthData;localStorage.setItem("confirmed",JSON.stringify(confirmed));showBanner("🎉 本月對帳全部完成！歷史已存檔。");}let wave3WasComplete=checkWave3Complete();function checkAndTriggerWave3(){const nowComplete=checkWave3Complete();if(!wave3WasComplete&&nowComplete){wave3WasComplete=true;archiveAndReset();}else{wave3WasComplete=nowComplete;}}function showVersionHistory(){const mr=document.getElementById("modal-root");mr.innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()" style="max-height:80vh;overflow-y:auto;text-align:left"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><div style="font-size:16px;font-weight:700;color:#f1f5f9">📋 更新履歷</div><button onclick="closeModal()" style="background:none;border:1px solid #334155;color:#64748b;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:inherit;font-size:12px">關閉</button></div>${VERSIONS.map((v,i)=>`<div style="margin-bottom:16px;padding-bottom:16px;border-bottom:${i<VERSIONS.length-1?"1px solid #1e2330":"none"}"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap"><span style="background:rgba(99,102,241,.15);color:#818cf8;border:1px solid rgba(99,102,241,.3);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700">v${v.num}</span>${i===0?"<span style='background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);border-radius:20px;padding:2px 8px;font-size:10px'>最新</span>":""}<span style="font-size:11px;color:#475569">${v.date}</span></div>${v.changes.map(c=>`<div style="font-size:12px;color:#64748b;line-height:1.8;padding-left:4px">${c}</div>`).join("")}</div>`).join("")}</div></div>`;}function confirmPay(id){const bank=BANKS.find(b=>b.id===id);const mr=document.getElementById("modal-root");mr.innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()"><div style="font-size:22px;margin-bottom:12px">💳</div><div style="font-size:16px;font-weight:700;color:#f1f5f9;margin-bottom:6px">${bank.name}</div><div style="font-size:13px;color:#64748b;margin-bottom:20px">確定已完成繳款了嗎？</div><div style="display:flex;gap:10px;justify-content:center"><button onclick="closeModal()" style="flex:1;padding:10px;border:1px solid #334155;background:none;color:#94a3b8;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">取消</button><button onclick="doConfirm(${id})" style="flex:1;padding:10px;border:none;background:rgba(52,211,153,.15);color:#34d399;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600">確認</button></div></div></div>`;}function cancelPay(id){const bank=BANKS.find(b=>b.id===id);const confirmedData=getConfirmed(id);const mr=document.getElementById("modal-root");mr.innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()"><div style="font-size:22px;margin-bottom:12px">↩️</div><div style="font-size:16px;font-weight:700;color:#f1f5f9;margin-bottom:6px">${bank.name}</div><div style="font-size:12px;color:#34d399;margin-bottom:4px">✓ 已確認繳款</div><div style="font-size:11px;color:#475569;margin-bottom:16px">確認時間：${fmtTime(confirmedData.ts)}<br><br>確定要取消此確認記錄嗎？</div><div style="display:flex;gap:10px;justify-content:center"><button onclick="closeModal()" style="flex:1;padding:10px;border:1px solid #334155;background:none;color:#94a3b8;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">保留</button><button onclick="doCancel(${id})" style="flex:1;padding:10px;border:none;background:rgba(239,68,68,.15);color:#f87171;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600">取消確認</button></div></div></div>`;}function doConfirm(id){const k=monthKey();if(!confirmed[k])confirmed[k]={};confirmed[k][id]={ts:Date.now()};localStorage.setItem("confirmed",JSON.stringify(confirmed));closeModal();checkAndTriggerWave3();if(!banner)showBanner("✓ 已標記確認！");render();}function doCancel(id){const k=monthKey();if(confirmed[k])delete confirmed[k][id];localStorage.setItem("confirmed",JSON.stringify(confirmed));wave3WasComplete=false;closeModal();showBanner("已取消確認");render();}function closeModal(){document.getElementById("modal-root").innerHTML="";}function resetAll(){if(!confirm("確定要重置本月所有確認記錄嗎？"))return;const k=monthKey();delete confirmed[k];localStorage.setItem("confirmed",JSON.stringify(confirmed));wave3WasComplete=false;render();}function isDismissed(id){const k=monthKey();return !!(dismissedNotifs[k]&&dismissedNotifs[k][id]);}function dismissAlert(id){const k=monthKey();if(!dismissedNotifs[k])dismissedNotifs[k]={};dismissedNotifs[k][id]=true;localStorage.setItem("dismissedNotifs",JSON.stringify(dismissedNotifs));render();}function dismissAllAlerts(){const alerts=getPageAlerts();const k=monthKey();if(!dismissedNotifs[k])dismissedNotifs[k]={};alerts.forEach(a=>{dismissedNotifs[k][a.id]=true;});localStorage.setItem("dismissedNotifs",JSON.stringify(dismissedNotifs));render();}function getPageAlerts(){const alerts=[];WAVES.forEach(w=>{const cd=getWD(w);const days=daysTo(cd);const manualBanks=w.banks.map(id=>BANKS.find(b=>b.id===id)).filter(b=>b&&b.type==="manual");const unconfirmed=manualBanks.filter(b=>!isDone(b.id));if(days===0)alerts.push({id:"wave-check-"+w.id,level:"today",icon:"📋",title:w.label+"檢查日！",body:"今天（"+fmt(cd)+"）請對帳"});else if(days===1)alerts.push({id:"wave-soon-"+w.id,level:"urgent",icon:"⚡",title:w.label+"明天對帳",body:"明天（"+fmt(cd)+"）對帳日"});unconfirmed.forEach(b=>{const due=getDue(b);if(!due)return;const dd=daysTo(due);if(dd<=3&&dd>=0){const level=dd===0?"urgent":dd===1?"today":"soon";alerts.push({id:"bank-"+b.id,level,icon:dd===0?"🚨":"⚠️",title:b.name+(dd===0?" 今日截止！":" 明日截止！"),body:"截止日："+fmt(due)});}});});return alerts.filter(a=>!isDismissed(a.id));}function setTab(t){currentTab=t;render();}function setFw(v){fw=v;render();}function toggleSheetMonth(key){sheetExpandedMonths[key]=!sheetExpandedMonths[key];render();}function renderSheetPage(){const k=monthKey();const curData=confirmed[k]||{};const allMonths={};Object.keys(history).forEach(mk=>{if(!allMonths[mk])allMonths[mk]={};Object.assign(allMonths[mk],history[mk]);});Object.keys(curData).forEach(id=>{if(!allMonths[k])allMonths[k]={};if(!allMonths[k][id]){const bank=BANKS.find(b=>b.id===Number(id));if(!bank)return;allMonths[k][id]={ts:curData[id].ts,bankName:bank.name,wave:bank.wave,type:bank.type,day:bank.day};}});const sortedMonths=Object.keys(allMonths).sort((a,b)=>{const[ay,am]=a.split("-").map(Number);const[by,bm]=b.split("-").map(Number);return by!==ay?by-ay:bm-am;});if(sortedMonths.length===0){return`<div style="text-align:center;padding:40px 20px;color:#334155">尚無繳款記錄</div>`;}const waveColor={1:"#34d399",2:"#60a5fa",3:"#a78bfa",null:"#64748b"};const waveLabel={1:"第一波",2:"第二波",3:"第三波",null:"—"};return sortedMonths.map(mk=>{const entries=Object.values(allMonths[mk]);const isExpanded=sheetExpandedMonths[mk]!==false;const rows=entries.map(e=>`<tr><td>${e.bankName}</td><td style="color:${waveColor[e.wave]}">${waveLabel[e.wave]}</td><td><span class="chip ${e.type==="manual"?"manual":"auto"}">${e.type==="manual"?"⚠ 手動":"✓ 自動"}</span></td><td>${fmtTime(e.ts)}</td></tr>`).join("");return`<div class="month-header"><div class="month-header-title" onclick="toggleSheetMonth('${mk}')">${fmtMonthLabel(mk)} (${entries.length} 筆) <span>${isExpanded?"▾":"▸"}</span></div>${isExpanded?`<table class="sheet-table"><thead><tr><th>銀行</th><th>波段</th><th>類型</th><th>時間</th></tr></thead><tbody>${rows}</tbody></table>`:""}</div>`;}).join("");}function render(){const ds=today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate();const bannerHtml=banner?`<div class="banner ${isOffline?"offline-banner":""}">${banner}</div>`:"";const headerHtml=`<div style="border-bottom:1px solid #1e2330;padding:14px 16px;display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px;font-weight:700;color:#f1f5f9">信用卡繳款管理</span><span class="version-badge" onclick="showVersionHistory()">v${VERSION.num} 📋</span></div><div style="text-align:right;font-size:12px;color:#94a3b8">${ds}</div></div>`;const tabNavHtml=`<div class="tab-nav"><button class="tab-btn ${currentTab==="dashboard"?"active":""}" onclick="setTab('dashboard')">📊 總覽</button><button class="tab-btn ${currentTab==="sheet"?"active":""}" onclick="setTab('sheet')">📋 歷史</button></div>`;if(currentTab==="sheet"){document.getElementById("app").innerHTML=bannerHtml+headerHtml+`<div class="page-content" style="padding:16px 12px">${renderSheetPage()}</div>`+tabNavHtml;return;}const nextW=WAVES.map(w=>({...w,dl:daysTo(getWD(w))})).filter(w=>w.dl>=0).sort((a,b)=>a.dl-b.dl)[0];const banks=fw==="all"?BANKS:BANKS.filter(b=>String(b.wave)===fw);const doneCount=BANKS.filter(b=>isDone(b.id)).length;const alerts=getPageAlerts();const w3done=checkWave3Complete();document.getElementById("app").innerHTML=bannerHtml+headerHtml+`<div class="page-content" style="padding:16px 12px">${w3done?`<div class="wave3-done-banner">🎉 本月對帳全部完成！</div>`:""}${alerts.length?`<div class="notif-panel"><div class="notif-panel-header"><div style="display:flex;align-items:center;gap:8px"><span class="pulse" style="width:7px;height:7px;border-radius:50%;background:#ef4444;display:inline-block"></span><span style="font-size:11px;color:#94a3b8;font-weight:600">ALERTS · ${alerts.length} 則提醒</span></div><button onclick="dismissAllAlerts()" style="background:none;border:1px solid #1e2330;color:#475569;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;font-family:inherit">全部忽略</button></div>${alerts.map(a=>`<div class="notif-item ${a.level}"><span class="notif-dot ${a.level==="urgent"?"red":a.level==="today"?"yellow":"blue"}"></span><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:${a.level==="urgent"?"#ef4444":a.level==="today"?"#fbbf24":"#3b82f6"}">${a.icon} ${a.title}</div><div style="font-size:11px;color:#475569;margin-top:2px">${a.body}</div></div><button class="dismiss-btn" onclick="dismissAlert('${a.id}')">忽略</button></div>`).join("")}</div>`:""}
-<div class="stat-grid"><div class="stat-card"><div style="font-size:9px;color:#475569;margin-bottom:6px">已確認</div><div style="font-size:26px;font-weight:700;color:#34d399">${doneCount}/${BANKS.length}</div><div style="font-size:10px;color:#64748b">本月完成</div></div>${nextW?`<div class="stat-card" style="border-color:rgba(59,130,246,.2)"><div style="font-size:9px;color:#475569;margin-bottom:6px">下次對帳</div><div style="font-size:26px;font-weight:700;color:${nextW.color}">${nextW.dl===0?"今天":nextW.dl+"天"}</div><div style="font-size:10px;color:#64748b">${nextW.label} · ${nextW.checkDay}號</div></div>`:""}</div>
-<div class="card" style="padding:12px"><div style="display:flex;justify-content:space-between;margin-bottom:4px">${WAVES.map(w=>{const days=daysTo(getWD(w));const isPast=days<0;const isCur=w.id===cw;return`<div style="text-align:center;flex:1"><div style="width:30px;height:30px;border-radius:50%;background:${isPast?"#1e2330":isCur?w.color:"#1a2035"};border:2px solid ${isPast?"#1e2330":w.color};margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:${isPast?"#334155":isCur?"#0a0c10":w.color};box-shadow:${isCur?"0 0 14px "+w.color+"55":"none"}">${w.id}</div><div style="font-size:11px;margin-top:4px;color:${isPast?"#334155":"#94a3b8"}">${w.label}</div><div style="font-size:9px;color:#475569">${w.checkDay}號</div><div style="font-size:10px;color:${isPast?"#334155":days===0?"#fbbf24":w.color};margin-top:2px">${isPast?"已過":days===0?"今天！":days+"天後"}</div></div>`;}).join("")}</div></div>
-<div class="card"><div style="padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1a1f2e"><span style="font-size:11px;color:#475569">BANK MONITOR · ${banks.length} 家</span><div style="display:flex;gap:4px;flex-wrap:wrap">${["all","1","2","3"].map(w=>`<button class="wave-btn ${fw===w?"active":""}" onclick="setFw('${w}')">${w==="all"?"全部":`第${["一","二","三"][Number(w)-1]}波`}</button>`).join("")}<button onclick="resetAll()" style="border:1px solid rgba(239,68,68,.2);background:rgba(239,68,68,.08);color:#f87171;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:11px;font-family:inherit">重置</button></div></div>${banks.map(bank=>{const wave=WAVES.find(w=>w.id===bank.wave);const due=getDue(bank);const done=isDone(bank.id);const confirmedData=getConfirmed(bank.id);return`<div class="row" style="opacity:${done?0.55:1}"><div class="avatar" style="background:${wave?wave.color+"18":"#1e2330"};border:1px solid ${wave?wave.color+"30":"#1e2330"};color:${wave?wave.color:"#475569"}">${bank.name[0]}</div><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:500;color:#cbd5e1;text-decoration:${done?"line-through":"none"}">${bank.name}</div><div class="due-info">${bank.day?"結帳 "+bank.day+" 號 → 截止 "+fmt(due):"結帳日未知"}</div>${done&&confirmedData?`<div style="font-size:10px;color:#34d399;margin-top:2px">✓ 確認時間：${fmtTime(confirmedData.ts)}</div>`:""}</div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">${wave?`<span class="chip w${wave.id}" style="font-size:10px">${wave.label}</span>`:""}<span class="chip ${bank.type==="manual"?"manual":"auto"}">${bank.type==="manual"?"⚠ 手動":"✓ 自動"}</span>${!done?`<button class="cbtn" onclick="confirmPay(${bank.id})">確認繳款</button>`:`<button class="cbtn done" onclick="confirmPay(${bank.id})">✓ 已確認</button><button class="cbtn cancel" onclick="cancelPay(${bank.id})">✕ 取消</button>`}</div></div>`;}).join("")}</div></div>`+tabNavHtml;}window.setFw=setFw;window.setTab=setTab;window.confirmPay=confirmPay;window.cancelPay=cancelPay;window.doConfirm=doConfirm;window.doCancel=doCancel;window.closeModal=closeModal;window.resetAll=resetAll;window.dismissAlert=dismissAlert;window.dismissAllAlerts=dismissAllAlerts;window.showVersionHistory=showVersionHistory;window.toggleSheetMonth=toggleSheetMonth;render();</script></body></html>
+<!DOCTYPE html><html lang="zh-TW"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/><title>信用卡繳款管理</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/><style>html{background:#0a0c10;overscroll-behavior-y:none}body{background:#0a0c10;color:#e2e8f0;font-family:'Noto Sans TC',sans-serif;margin:0;padding:0;min-height:100vh;overscroll-behavior-y:none}#app{width:100%;min-height:100vh}*{box-sizing:border-box;margin:0;padding:0}.card{background:#111318;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}.stat-card{background:#0e1117;border:1px solid #1e2330;border-radius:10px;padding:14px}.wave-btn{border:1px solid #1e2330;background:#111318;color:#64748b;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px;font-family:inherit}.wave-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}.row{border-bottom:1px solid #1a1f2e;padding:11px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row:last-child{border-bottom:none}.avatar{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}.chip{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.manual{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25)}.auto{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2)}.w1{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);border-radius:6px}.w2{background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2);border-radius:6px}.w3{background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);border-radius:6px}.pulse{animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}.banner{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:#052e16;border:1px solid rgba(52,211,153,.3);color:#34d399;padding:9px 16px;border-radius:10px;font-size:12px;z-index:999;white-space:nowrap}.offline-banner{background:#450a0a!important;color:#f87171!important;border-color:rgba(239,68,68,0.3)!important}.due-info{color:#a78bfa;font-size:13px;margin-top:4px;font-weight:500}.cbtn{border:1px solid #334155;background:none;color:#64748b;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:11px;font-family:inherit;margin-top:4px}.cbtn.done{background:rgba(52,211,153,.1);color:#34d399;border-color:rgba(52,211,153,.3)}.cbtn.cancel{background:rgba(239,68,68,.08);color:#f87171;border-color:rgba(239,68,68,.2);margin-top:4px}.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}.modal{background:#111318;border:1px solid #1e2330;border-radius:16px;padding:24px;width:100%;max-width:320px;text-align:center}.version-badge{display:inline-flex;align-items:center;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);color:#818cf8;border-radius:20px;padding:2px 10px;font-size:10px;font-weight:600;letter-spacing:.5px;cursor:pointer}.notif-panel{background:#0e1117;border:1px solid #1e2330;border-radius:12px;margin-bottom:14px;overflow:hidden}.notif-panel-header{padding:12px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;justify-content:space-between}.notif-item{padding:10px 14px;border-bottom:1px solid #1a1f2e;display:flex;align-items:center;gap:10px}.notif-item:last-child{border-bottom:none}.notif-item.urgent{background:rgba(239,68,68,.04)}.notif-item.today{background:rgba(251,191,36,.04)}.notif-item.soon{background:rgba(96,165,250,.03)}.notif-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.notif-dot.red{background:#ef4444}.notif-dot.yellow{background:#fbbf24}.notif-dot.blue{background:#3b82f6}.dismiss-btn{background:none;border:1px solid #1e2330;color:#475569;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;font-family:inherit;flex-shrink:0}.tab-nav{display:flex;gap:4px;padding:10px 16px;border-top:1px solid #1e2330;background:#0a0c10;position:fixed;bottom:0;left:0;right:0;z-index:100;justify-content:center}.tab-btn{padding:9px 32px;border-radius:10px;border:1px solid #1e2330;background:none;color:#64748b;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}.tab-btn.active{background:#1e293b;border-color:#3b82f6;color:#60a5fa}.page-content{padding-bottom:100px}.sheet-table{width:100%;border-collapse:collapse;font-size:12px}.sheet-table th{background:#0e1117;color:#475569;font-size:10px;font-weight:600;padding:8px 12px;text-align:left;border-bottom:1px solid #1e2330;letter-spacing:.5px}.sheet-table td{padding:9px 12px;border-bottom:1px solid #1a1f2e;color:#94a3b8;vertical-align:middle}.sheet-table tr:last-child td{border-bottom:none}.month-header{background:#0e1117;border:1px solid #1e2330;border-radius:10px;margin-bottom:10px;overflow:hidden}.month-header-title{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}.wave3-done-banner{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px}.reset-info-bar{background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.2);border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:12px;color:#60a5fa}</style></head><body>
+<div id="app"></div>
+<div id="modal-root"></div>
+<script>
+const VERSIONS=[
+  {num:"3.7.0",date:"2026-05-04",changes:[
+    "✦ 新增每月自動重置：每月開啟App自動偵測是否跨月",
+    "✦ 跨月時上月確認記錄自動封存至歷史，本月乾淨重新開始",
+    "✦ 重置後顯示藍色提示列，可手動關閉",
+  ]},
+  {num:"3.6.0",date:"2026-05-04",changes:["✦ 修正各波段截止日計算邏輯","✦ 兆豐銀行截止日固定每月6號"]},
+  {num:"3.5.0",date:"2026-05-04",changes:["✦ 加回手動/自動繳費標示","✦ 銀行清單加回左側彩色頭像"]},
+  {num:"3.4.1",date:"2026-05-03",changes:["✦ 修復Samsung瀏覽器黑畫面相容性問題"]},
+  {num:"1.0.0",date:"2026-04-24",changes:["✦ 初始版本發布"]}
+];
+const VERSION=VERSIONS[0];
+
+const BANKS=[
+  {id:9,name:"中國信託",day:20,type:"auto",wave:1,dueDay:null},
+  {id:10,name:"兆豐銀行",day:21,type:"manual",wave:1,dueDay:6},
+  {id:11,name:"彰化銀行",day:31,type:"manual",wave:1,dueDay:null},
+  {id:1,name:"遠東商銀",day:2,type:"manual",wave:2,dueDay:null},
+  {id:2,name:"國泰世華",day:3,type:"auto",wave:2,dueDay:null},
+  {id:3,name:"華南銀行",day:7,type:"auto",wave:2,dueDay:null},
+  {id:4,name:"玉山銀行",day:7,type:"auto",wave:2,dueDay:null},
+  {id:5,name:"聯邦銀行",day:9,type:"auto",wave:3,dueDay:null},
+  {id:6,name:"元大銀行",day:10,type:"manual",wave:3,dueDay:null},
+  {id:7,name:"台新銀行",day:12,type:"auto",wave:3,dueDay:null},
+  {id:8,name:"新光銀行",day:14,type:"auto",wave:3,dueDay:null},
+  {id:12,name:"台北富邦",day:null,type:"manual",wave:null,dueDay:null}
+];
+
+const WAVES=[
+  {id:1,label:"第一波",checkDay:4,banks:[9,10,11],color:"#34d399",next:false},
+  {id:2,label:"第二波",checkDay:18,banks:[1,2,3,4],color:"#60a5fa",next:false},
+  {id:3,label:"第三波",checkDay:25,banks:[5,6,7,8],color:"#a78bfa",next:false}
+];
+
+// ── helpers ───────────────────────────────────────────────────────────────────
+function getDue(bank){
+  if(!bank.day)return null;
+  if(bank.dueDay){const t=new Date();return new Date(t.getFullYear(),t.getMonth(),bank.dueDay);}
+  const t=new Date();
+  const refMonth=bank.wave===1
+    ?new Date(t.getFullYear(),t.getMonth()-1,1)
+    :new Date(t.getFullYear(),t.getMonth(),1);
+  const lastDay=new Date(refMonth.getFullYear(),refMonth.getMonth()+1,0).getDate();
+  const billingDate=new Date(refMonth.getFullYear(),refMonth.getMonth(),Math.min(bank.day,lastDay));
+  const due=new Date(billingDate);due.setDate(due.getDate()+18);return due;
+}
+function getWD(w){const t=new Date();t.setHours(0,0,0,0);return new Date(t.getFullYear(),t.getMonth(),w.checkDay);}
+function daysTo(d){const t=new Date();t.setHours(0,0,0,0);return Math.ceil((d-t)/86400000);}
+function fmt(d){return d?d.getMonth()+1+"/"+d.getDate():"—";}
+function fmtTime(ts){if(!ts)return"";const d=new Date(ts);return(d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");}
+function fmtMonthLabel(key){const[y,m]=key.split("-");return y+"年"+m+"月";}
+function curWave(){const d=new Date().getDate();return d<=4?1:d<=18?2:3;}
+function monthKey(){const t=new Date();return t.getFullYear()+"-"+(t.getMonth()+1);}
+
+// ── state ─────────────────────────────────────────────────────────────────────
+let fw="all",banner="",bTimer=null,isOffline=false,autoResetMsg="";
+let confirmed=JSON.parse(localStorage.getItem("confirmed")||"{}");
+let dismissedNotifs=JSON.parse(localStorage.getItem("dismissedNotifs")||"{}");
+let history=JSON.parse(localStorage.getItem("payHistory")||"{}");
+let currentTab="dashboard",sheetExpandedMonths={};
+const today=new Date(),cw=curWave();
+
+// ── 離線偵測 ──────────────────────────────────────────────────────────────────
+window.addEventListener('offline',()=>{isOffline=true;showBanner("📵 目前處於離線模式",true);});
+window.addEventListener('online',()=>{isOffline=false;showBanner("✅ 網路已恢復連線");});
+if(!navigator.onLine){isOffline=true;}
+
+// ── ★ 每月自動重置 ★ ─────────────────────────────────────────────────────────
+// 邏輯：App每次開啟，比對上次記錄的月份(lastSeenMonth)
+// 若跨月 → 封存舊月confirmed到history → 清除舊月confirmed → 更新lastSeenMonth
+(function runMonthlyAutoReset(){
+  const currentKey=monthKey();
+  const lastKey=localStorage.getItem("lastSeenMonth");
+
+  // 首次使用：記錄月份就好
+  if(!lastKey){
+    localStorage.setItem("lastSeenMonth",currentKey);
+    return;
+  }
+  // 同月：不動
+  if(lastKey===currentKey) return;
+
+  // ── 跨月了，執行封存 ──
+  // 1. 把 lastKey 月份的 confirmed 全部封存到 history
+  const oldData=confirmed[lastKey]||{};
+  if(Object.keys(oldData).length>0){
+    if(!history[lastKey])history[lastKey]={};
+    Object.keys(oldData).forEach(id=>{
+      if(history[lastKey][id])return; // 已有記錄就不覆蓋
+      const bank=BANKS.find(b=>b.id===Number(id));
+      if(!bank)return;
+      history[lastKey][id]={
+        ts:oldData[id].ts,
+        bankName:bank.name,
+        wave:bank.wave,
+        type:bank.type,
+        day:bank.day
+      };
+    });
+    localStorage.setItem("payHistory",JSON.stringify(history));
+  }
+
+  // 2. 清除所有舊月的 confirmed，只保留本月（如果有的話）
+  const freshConfirmed={};
+  if(confirmed[currentKey]) freshConfirmed[currentKey]=confirmed[currentKey];
+  confirmed=freshConfirmed;
+  localStorage.setItem("confirmed",JSON.stringify(confirmed));
+
+  // 3. 清除舊月的 dismissedNotifs
+  const freshDismissed={};
+  if(dismissedNotifs[currentKey]) freshDismissed[currentKey]=dismissedNotifs[currentKey];
+  dismissedNotifs=freshDismissed;
+  localStorage.setItem("dismissedNotifs",JSON.stringify(dismissedNotifs));
+
+  // 4. 更新 lastSeenMonth
+  localStorage.setItem("lastSeenMonth",currentKey);
+
+  // 5. 設定提示訊息
+  autoResetMsg=`${fmtMonthLabel(lastKey)}的記錄已自動封存，${fmtMonthLabel(currentKey)}重新開始！`;
+})();
+
+// ── banner ────────────────────────────────────────────────────────────────────
+function showBanner(msg,persist=false){
+  banner=msg;render();
+  if(bTimer)clearTimeout(bTimer);
+  if(!persist){bTimer=setTimeout(()=>{banner="";render();},3000);}
+}
+function dismissAutoResetMsg(){autoResetMsg="";render();}
+
+// ── confirmed helpers ─────────────────────────────────────────────────────────
+function getConfirmed(id){const k=monthKey();return confirmed[k]&&confirmed[k][id]?confirmed[k][id]:null;}
+function isDone(id){return !!getConfirmed(id);}
+
+// ── wave-3 完成封存（月中用）──────────────────────────────────────────────────
+function getWave3BankIds(){return WAVES.find(w=>w.id===3).banks;}
+function checkWave3Complete(){
+  return getWave3BankIds().filter(id=>BANKS.find(b=>b.id===id)).every(id=>isDone(id));
+}
+function archiveCurrentMonth(){
+  const k=monthKey();
+  const cur=confirmed[k]||{};
+  if(!history[k])history[k]={};
+  Object.keys(cur).forEach(id=>{
+    if(history[k][id])return;
+    const bank=BANKS.find(b=>b.id===Number(id));
+    if(!bank)return;
+    history[k][id]={ts:cur[id].ts,bankName:bank.name,wave:bank.wave,type:bank.type,day:bank.day};
+  });
+  localStorage.setItem("payHistory",JSON.stringify(history));
+  showBanner("🎉 本月對帳全部完成！歷史已存檔。");
+}
+let wave3WasComplete=checkWave3Complete();
+function checkAndTriggerWave3(){
+  const nowComplete=checkWave3Complete();
+  if(!wave3WasComplete&&nowComplete){wave3WasComplete=true;archiveCurrentMonth();}
+  else wave3WasComplete=nowComplete;
+}
+
+// ── modals ────────────────────────────────────────────────────────────────────
+function showVersionHistory(){
+  const mr=document.getElementById("modal-root");
+  mr.innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()" style="max-height:80vh;overflow-y:auto;text-align:left">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="font-size:16px;font-weight:700;color:#f1f5f9">📋 更新履歷</div>
+      <button onclick="closeModal()" style="background:none;border:1px solid #334155;color:#64748b;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:inherit;font-size:12px">關閉</button>
+    </div>
+    ${VERSIONS.map((v,i)=>`<div style="margin-bottom:16px;padding-bottom:16px;border-bottom:${i<VERSIONS.length-1?"1px solid #1e2330":"none"}">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+        <span style="background:rgba(99,102,241,.15);color:#818cf8;border:1px solid rgba(99,102,241,.3);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700">v${v.num}</span>
+        ${i===0?"<span style='background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);border-radius:20px;padding:2px 8px;font-size:10px'>最新</span>":""}
+        <span style="font-size:11px;color:#475569">${v.date}</span>
+      </div>
+      ${v.changes.map(c=>`<div style="font-size:12px;color:#64748b;line-height:1.8;padding-left:4px">${c}</div>`).join("")}
+    </div>`).join("")}
+  </div></div>`;
+}
+function confirmPay(id){
+  const bank=BANKS.find(b=>b.id===id);
+  document.getElementById("modal-root").innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()">
+    <div style="font-size:22px;margin-bottom:12px">💳</div>
+    <div style="font-size:16px;font-weight:700;color:#f1f5f9;margin-bottom:6px">${bank.name}</div>
+    <div style="font-size:13px;color:#64748b;margin-bottom:20px">確定已完成繳款了嗎？</div>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button onclick="closeModal()" style="flex:1;padding:10px;border:1px solid #334155;background:none;color:#94a3b8;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">取消</button>
+      <button onclick="doConfirm(${id})" style="flex:1;padding:10px;border:none;background:rgba(52,211,153,.15);color:#34d399;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600">確認</button>
+    </div>
+  </div></div>`;
+}
+function cancelPay(id){
+  const bank=BANKS.find(b=>b.id===id);
+  const cd=getConfirmed(id);
+  document.getElementById("modal-root").innerHTML=`<div class="modal-bg" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()">
+    <div style="font-size:22px;margin-bottom:12px">↩️</div>
+    <div style="font-size:16px;font-weight:700;color:#f1f5f9;margin-bottom:6px">${bank.name}</div>
+    <div style="font-size:12px;color:#34d399;margin-bottom:4px">✓ 已確認繳款</div>
+    <div style="font-size:11px;color:#475569;margin-bottom:16px">確認時間：${fmtTime(cd.ts)}<br><br>確定要取消嗎？</div>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button onclick="closeModal()" style="flex:1;padding:10px;border:1px solid #334155;background:none;color:#94a3b8;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">保留</button>
+      <button onclick="doCancel(${id})" style="flex:1;padding:10px;border:none;background:rgba(239,68,68,.15);color:#f87171;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600">取消確認</button>
+    </div>
+  </div></div>`;
+}
+function doConfirm(id){
+  const k=monthKey();
+  if(!confirmed[k])confirmed[k]={};
+  confirmed[k][id]={ts:Date.now()};
+  localStorage.setItem("confirmed",JSON.stringify(confirmed));
+  closeModal();checkAndTriggerWave3();
+  if(!banner)showBanner("✓ 已標記確認！");render();
+}
+function doCancel(id){
+  const k=monthKey();
+  if(confirmed[k])delete confirmed[k][id];
+  localStorage.setItem("confirmed",JSON.stringify(confirmed));
+  wave3WasComplete=false;closeModal();showBanner("已取消確認");render();
+}
+function closeModal(){document.getElementById("modal-root").innerHTML="";}
+function resetAll(){
+  if(!confirm("確定要重置本月所有確認記錄嗎？"))return;
+  const k=monthKey();delete confirmed[k];
+  localStorage.setItem("confirmed",JSON.stringify(confirmed));
+  wave3WasComplete=false;render();
+}
+
+// ── alerts ────────────────────────────────────────────────────────────────────
+function isDismissed(id){const k=monthKey();return !!(dismissedNotifs[k]&&dismissedNotifs[k][id]);}
+function dismissAlert(id){
+  const k=monthKey();if(!dismissedNotifs[k])dismissedNotifs[k]={};
+  dismissedNotifs[k][id]=true;localStorage.setItem("dismissedNotifs",JSON.stringify(dismissedNotifs));render();
+}
+function dismissAllAlerts(){
+  const k=monthKey();if(!dismissedNotifs[k])dismissedNotifs[k]={};
+  getPageAlerts().forEach(a=>{dismissedNotifs[k][a.id]=true;});
+  localStorage.setItem("dismissedNotifs",JSON.stringify(dismissedNotifs));render();
+}
+function getPageAlerts(){
+  const alerts=[];
+  WAVES.forEach(w=>{
+    const cd=getWD(w),days=daysTo(cd);
+    const unconfirmedManual=w.banks.map(id=>BANKS.find(b=>b.id===id)).filter(b=>b&&b.type==="manual"&&!isDone(b.id));
+    if(days===0)alerts.push({id:"wave-check-"+w.id,level:"today",icon:"📋",title:w.label+"檢查日！",body:"今天（"+fmt(cd)+"）請對帳"});
+    else if(days===1)alerts.push({id:"wave-soon-"+w.id,level:"urgent",icon:"⚡",title:w.label+"明天對帳",body:"明天（"+fmt(cd)+"）對帳日"});
+    unconfirmedManual.forEach(b=>{
+      const due=getDue(b);if(!due)return;
+      const dd=daysTo(due);
+      if(dd<=3&&dd>=0){
+        alerts.push({id:"bank-"+b.id,level:dd===0?"urgent":dd===1?"today":"soon",
+          icon:dd===0?"🚨":"⚠️",title:b.name+(dd===0?" 今日截止！":" 明日截止！"),body:"截止日："+fmt(due)});
+      }
+    });
+  });
+  return alerts.filter(a=>!isDismissed(a.id));
+}
+
+// ── tabs ──────────────────────────────────────────────────────────────────────
+function setTab(t){currentTab=t;render();}
+function setFw(v){fw=v;render();}
+function toggleSheetMonth(key){sheetExpandedMonths[key]=!sheetExpandedMonths[key];render();}
+
+// ── sheet page ────────────────────────────────────────────────────────────────
+function renderSheetPage(){
+  const k=monthKey(),curData=confirmed[k]||{};
+  const allMonths={};
+  Object.keys(history).forEach(mk=>{if(!allMonths[mk])allMonths[mk]={};Object.assign(allMonths[mk],history[mk]);});
+  Object.keys(curData).forEach(id=>{
+    if(!allMonths[k])allMonths[k]={};
+    if(!allMonths[k][id]){
+      const bank=BANKS.find(b=>b.id===Number(id));if(!bank)return;
+      allMonths[k][id]={ts:curData[id].ts,bankName:bank.name,wave:bank.wave,type:bank.type,day:bank.day};
+    }
+  });
+  const sortedMonths=Object.keys(allMonths).sort((a,b)=>{
+    const[ay,am]=a.split("-").map(Number),[by,bm]=b.split("-").map(Number);
+    return by!==ay?by-ay:bm-am;
+  });
+  if(!sortedMonths.length)return`<div style="text-align:center;padding:40px 20px;color:#475569;font-size:13px"><div style="font-size:32px;margin-bottom:12px">📭</div>尚無繳款記錄</div>`;
+  const wC={1:"#34d399",2:"#60a5fa",3:"#a78bfa",null:"#64748b"};
+  const wL={1:"第一波",2:"第二波",3:"第三波",null:"—"};
+  return sortedMonths.map(mk=>{
+    const entries=Object.values(allMonths[mk]);
+    const isExpanded=sheetExpandedMonths[mk]!==false;
+    const isCur=mk===k;
+    const rows=entries.sort((a,b)=>(a.wave||99)-(b.wave||99)).map(e=>`<tr>
+      <td style="color:#cbd5e1;font-weight:500">${e.bankName}</td>
+      <td style="color:${wC[e.wave]||"#64748b"}">${wL[e.wave]||"—"}</td>
+      <td><span class="chip ${e.type==="manual"?"manual":"auto"}" style="font-size:10px">${e.type==="manual"?"⚠ 手動":"✓ 自動"}</span></td>
+      <td style="color:#34d399;font-size:11px">${fmtTime(e.ts)}</td>
+    </tr>`).join("");
+    return`<div class="month-header">
+      <div class="month-header-title" onclick="toggleSheetMonth('${mk}')">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-size:14px;font-weight:700;color:#f1f5f9">${fmtMonthLabel(mk)}</span>
+          ${isCur?`<span style="background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.2);border-radius:20px;padding:2px 7px;font-size:10px">本月</span>`:""}
+          <span style="font-size:11px;color:#475569">${entries.length} 筆</span>
+        </div>
+        <span style="color:#475569;font-size:14px">${isExpanded?"▾":"▸"}</span>
+      </div>
+      ${isExpanded?`<table class="sheet-table"><thead><tr><th>銀行</th><th>波段</th><th>類型</th><th>確認時間</th></tr></thead><tbody>${rows}</tbody></table>`:""}
+    </div>`;
+  }).join("");
+}
+
+// ── main render ───────────────────────────────────────────────────────────────
+function render(){
+  const ds=today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate();
+  const bannerHtml=banner?`<div class="banner ${isOffline?"offline-banner":""}">${banner}</div>`:"";
+
+  // 跨月重置提示（藍色，手動關閉）
+  const resetBarHtml=autoResetMsg?`<div class="reset-info-bar">
+    <span style="font-size:16px">🔄</span>
+    <span style="flex:1">${autoResetMsg}</span>
+    <button onclick="dismissAutoResetMsg()" style="background:none;border:none;color:#60a5fa;cursor:pointer;font-size:16px;line-height:1;padding:0 4px">✕</button>
+  </div>`:"";
+
+  const headerHtml=`<div style="border-bottom:1px solid #1e2330;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:18px;font-weight:700;color:#f1f5f9">信用卡繳款管理</span>
+      <span class="version-badge" onclick="showVersionHistory()">v${VERSION.num} 📋</span>
+      ${isOffline?`<span style="background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2);border-radius:20px;padding:2px 8px;font-size:10px">📵 離線中</span>`:""}
+    </div>
+    <div style="text-align:right;font-size:12px;color:#94a3b8">${ds}</div>
+  </div>`;
+
+  const tabNavHtml=`<div class="tab-nav">
+    <button class="tab-btn ${currentTab==="dashboard"?"active":""}" onclick="setTab('dashboard')">📊 總覽</button>
+    <button class="tab-btn ${currentTab==="sheet"?"active":""}" onclick="setTab('sheet')">📋 歷史</button>
+  </div>`;
+
+  if(currentTab==="sheet"){
+    document.getElementById("app").innerHTML=bannerHtml+headerHtml+
+      `<div class="page-content" style="padding:16px 12px">
+        ${resetBarHtml}
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <span style="font-size:11px;color:#475569">PAYMENT HISTORY · 各月繳款記錄</span>
+          <span style="font-size:10px;color:#334155">點擊月份展開</span>
+        </div>
+        ${renderSheetPage()}
+      </div>`+tabNavHtml;
+    return;
+  }
+
+  const nextW=WAVES.map(w=>({...w,dl:daysTo(getWD(w))})).filter(w=>w.dl>=0).sort((a,b)=>a.dl-b.dl)[0];
+  const banks=fw==="all"?BANKS:BANKS.filter(b=>String(b.wave)===fw);
+  const doneCount=BANKS.filter(b=>isDone(b.id)).length;
+  const alerts=getPageAlerts();
+  const w3done=checkWave3Complete();
+
+  const alertsHtml=alerts.length?`<div class="notif-panel">
+    <div class="notif-panel-header">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="pulse" style="width:7px;height:7px;border-radius:50%;background:#ef4444;display:inline-block"></span>
+        <span style="font-size:11px;color:#94a3b8;font-weight:600">ALERTS · ${alerts.length} 則提醒</span>
+      </div>
+      <button onclick="dismissAllAlerts()" style="background:none;border:1px solid #1e2330;color:#475569;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;font-family:inherit">全部忽略</button>
+    </div>
+    ${alerts.map(a=>`<div class="notif-item ${a.level}">
+      <span class="notif-dot ${a.level==="urgent"?"red":a.level==="today"?"yellow":"blue"}"></span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600;color:${a.level==="urgent"?"#ef4444":a.level==="today"?"#fbbf24":"#3b82f6"}">${a.icon} ${a.title}</div>
+        <div style="font-size:11px;color:#475569;margin-top:2px">${a.body}</div>
+      </div>
+      <button class="dismiss-btn" onclick="dismissAlert('${a.id}')">忽略</button>
+    </div>`).join("")}
+  </div>`:"";
+
+  document.getElementById("app").innerHTML=bannerHtml+headerHtml+
+    `<div class="page-content" style="padding:16px 12px">
+      ${resetBarHtml}
+      ${w3done?`<div class="wave3-done-banner"><span style="font-size:22px">🎉</span><div><div style="font-size:13px;font-weight:700;color:#34d399">本月對帳全部完成！</div><div style="font-size:11px;color:#475569;margin-top:3px">所有波段已完成，等待下月自動重置。</div></div></div>`:""}
+      ${alertsHtml}
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div style="font-size:9px;color:#475569;margin-bottom:6px">已確認</div>
+          <div style="font-size:26px;font-weight:700;color:#34d399">${doneCount}/${BANKS.length}</div>
+          <div style="font-size:10px;color:#64748b">本月完成</div>
+        </div>
+        ${nextW?`<div class="stat-card" style="border-color:rgba(59,130,246,.2)">
+          <div style="font-size:9px;color:#475569;margin-bottom:6px">下次對帳</div>
+          <div style="font-size:26px;font-weight:700;color:${nextW.color}">${nextW.dl===0?"今天":nextW.dl+"天"}</div>
+          <div style="font-size:10px;color:#64748b">${nextW.label} · ${nextW.checkDay}號</div>
+        </div>`:""}
+      </div>
+      <div class="card" style="padding:12px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          ${WAVES.map(w=>{
+            const days=daysTo(getWD(w)),isPast=days<0,isCur=w.id===cw;
+            const wDone=w.banks.filter(id=>BANKS.find(b=>b.id===id)).every(id=>isDone(id));
+            return`<div style="text-align:center;flex:1">
+              <div style="width:30px;height:30px;border-radius:50%;background:${isPast?"#1e2330":isCur?w.color:"#1a2035"};border:2px solid ${isPast?"#1e2330":w.color};margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:${isPast?"#334155":isCur?"#0a0c10":w.color};box-shadow:${isCur?"0 0 14px "+w.color+"55":"none"}">${wDone?"✓":w.id}</div>
+              <div style="font-size:11px;margin-top:4px;color:${isPast?"#334155":"#94a3b8"}">${w.label}</div>
+              <div style="font-size:9px;color:#475569">${w.checkDay}號</div>
+              <div style="font-size:10px;color:${isPast?"#334155":days===0?"#fbbf24":w.color};margin-top:2px">${wDone?"已完成":isPast?"已過":days===0?"今天！":days+"天後"}</div>
+            </div>`;
+          }).join("")}
+        </div>
+      </div>
+      <div class="card">
+        <div style="padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1a1f2e;flex-wrap:wrap;gap:8">
+          <span style="font-size:11px;color:#475569">BANK MONITOR · ${banks.length} 家</span>
+          <div style="display:flex;gap:4px;flex-wrap:wrap">
+            ${["all","1","2","3"].map(w=>`<button class="wave-btn ${fw===w?"active":""}" onclick="setFw('${w}')">${w==="all"?"全部":`第${["一","二","三"][Number(w)-1]}波`}</button>`).join("")}
+            <button onclick="resetAll()" style="border:1px solid rgba(239,68,68,.2);background:rgba(239,68,68,.08);color:#f87171;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:11px;font-family:inherit">重置</button>
+          </div>
+        </div>
+        ${banks.map(bank=>{
+          const wave=WAVES.find(w=>w.id===bank.wave);
+          const due=getDue(bank),done=isDone(bank.id),cd=getConfirmed(bank.id);
+          return`<div class="row" style="opacity:${done?0.55:1}">
+            <div class="avatar" style="background:${wave?wave.color+"18":"#1e2330"};border:1px solid ${wave?wave.color+"30":"#1e2330"};color:${wave?wave.color:"#475569"}">${bank.name[0]}</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:14px;font-weight:500;color:#cbd5e1;text-decoration:${done?"line-through":"none"}">${bank.name}</div>
+              <div class="due-info">${bank.day?"結帳 "+bank.day+" 號 → 截止 "+fmt(due):"結帳日未知"}</div>
+              ${done&&cd?`<div style="font-size:10px;color:#34d399;margin-top:2px">✓ 確認時間：${fmtTime(cd.ts)}</div>`:""}
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+              ${wave?`<span class="chip w${wave.id}" style="font-size:10px">${wave.label}</span>`:""}
+              <span class="chip ${bank.type==="manual"?"manual":"auto"}">${bank.type==="manual"?"⚠ 手動":"✓ 自動"}</span>
+              ${!done
+                ?`<button class="cbtn" onclick="confirmPay(${bank.id})">確認繳款</button>`
+                :`<button class="cbtn done" onclick="confirmPay(${bank.id})">✓ 已確認</button><button class="cbtn cancel" onclick="cancelPay(${bank.id})">✕ 取消</button>`}
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>`+tabNavHtml;
+}
+
+window.setFw=setFw;window.setTab=setTab;window.confirmPay=confirmPay;window.cancelPay=cancelPay;
+window.doConfirm=doConfirm;window.doCancel=doCancel;window.closeModal=closeModal;window.resetAll=resetAll;
+window.dismissAlert=dismissAlert;window.dismissAllAlerts=dismissAllAlerts;window.showVersionHistory=showVersionHistory;
+window.toggleSheetMonth=toggleSheetMonth;window.dismissAutoResetMsg=dismissAutoResetMsg;
+render();
+</script>
+</body></html>
