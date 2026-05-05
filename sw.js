@@ -1,28 +1,29 @@
-/* sw.js - 離線萬用版 v3.7.2 */
-const CACHE_NAME = 'credit-manager-v3.7.2';
-const ASSETS = ['/', '/index.html'];
-
-self.addEventListener('install', (e) => {
+const CACHE='cc-dashboard-v1';
+self.addEventListener('install',e=>{
+  e.waitUntil(
+    caches.open(CACHE).then(c=>c.addAll([
+      '/cc_payment_tracker.html/',
+      '/cc_payment_tracker.html/index.html'
+    ]))
+  );
   self.skipWaiting();
-  e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
 });
-
-self.addEventListener('activate', (e) => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.map(k => k !== CACHE_NAME ? caches.delete(k) : null))));
-  return self.clients.claim();
+self.addEventListener('activate',e=>{
+  e.waitUntil(
+    caches.keys().then(keys=>
+      Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))
+    )
+  );
+  self.clients.claim();
 });
-
-self.addEventListener('fetch', (e) => {
-  if (e.request.method !== 'GET' || !e.request.url.startsWith('http')) return;
+self.addEventListener('fetch',e=>{
   e.respondWith(
-    caches.open(CACHE_NAME).then(c => {
-      return c.match(e.request).then(res => {
-        const fetchUpdate = fetch(e.request).then(nRes => {
-          if (nRes && nRes.status === 200) c.put(e.request, nRes.clone());
-          return nRes;
-        }).catch(() => null);
-        return res || fetchUpdate;
-      });
-    })
+    caches.match(e.request).then(r=>
+      r||fetch(e.request).then(res=>{
+        const clone=res.clone();
+        caches.open(CACHE).then(c=>c.put(e.request,clone));
+        return res;
+      }).catch(()=>caches.match('/cc_payment_tracker.html/index.html'))
+    )
   );
 });
