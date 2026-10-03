@@ -2,6 +2,7 @@
 if('serviceWorker'in navigator){navigator.serviceWorker.register('/cc_payment_tracker.html/sw.js').then(r=>console.log('SW ok',r)).catch(e=>console.log('SW err',e));}
 
 const VERSIONS=[
+  {num:"4.2.0",date:"2026-10-03",changes:["✦ 補上台北富邦結帳日（12號），歸入第三波"]},
   {num:"4.1.0",date:"2026-05-17",changes:["✦ 國泰世華繳款截止日改為結帳日加16天計算"]},
   {num:"4.0.0",date:"2026-05-05",changes:["✦ 正式支援PWA離線使用（GitHub Pages + Service Worker）","✦ 修正台北富邦被底部遮擋","✦ 斷網後仍可正常使用所有功能"]},
   {num:"3.9.0",date:"2026-05-05",changes:["✦ 加入Service Worker離線快取","✦ 修正台北富邦遮擋問題"]},
@@ -24,13 +25,13 @@ const BANKS=[
   {id:6, name:"元大銀行",day:10,type:"manual",wave:3,dueDay:null,dueDays:18},
   {id:7, name:"台新銀行",day:12,type:"auto",  wave:3,dueDay:null,dueDays:18},
   {id:8, name:"新光銀行",day:14,type:"auto",  wave:3,dueDay:null,dueDays:18},
-  {id:12,name:"台北富邦",day:null,type:"manual",wave:null,dueDay:null,dueDays:18}
+  {id:12,name:"台北富邦",day:12,type:"manual",wave:3,dueDay:null,dueDays:18}
 ];
 
 const WAVES=[
   {id:1,label:"第一波",checkDay:4, banks:[9,10,11],color:"#34d399",next:false},
   {id:2,label:"第二波",checkDay:18,banks:[1,2,3,4],color:"#60a5fa",next:false},
-  {id:3,label:"第三波",checkDay:25,banks:[5,6,7,8],color:"#a78bfa",next:false}
+  {id:3,label:"第三波",checkDay:25,banks:[5,6,7,8,12],color:"#a78bfa",next:false}
 ];
 
 function getDue(bank){
